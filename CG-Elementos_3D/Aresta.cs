@@ -10,5 +10,15 @@ namespace CG_Elementos_3D
     {
         private Vertice inicio;
         private Vertice fim;
+
+        public Aresta() { }
+        public Aresta(Vertice inicio, Vertice fim)
+        {
+            this.inicio = inicio;
+            this.fim = fim;
+        }
+
+        internal Vertice Inicio { get => inicio; set => inicio = value; }
+        internal Vertice Fim { get => fim; set => fim = value; }
     }
 }
