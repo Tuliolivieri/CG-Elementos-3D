@@ -16,5 +16,13 @@ namespace CG_Elementos_3D
         {
             InitializeComponent();
         }
+
+        private void BtAbrir_Click(object sender, EventArgs e)
+        {
+            if(opf.ShowDialog() == DialogResult.OK)
+            {
+                lbTitle.Text = opf.FileName;
+            }
+        }
     }
 }
