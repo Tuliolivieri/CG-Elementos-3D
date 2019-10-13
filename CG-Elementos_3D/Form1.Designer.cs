@@ -33,6 +33,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.opf = new System.Windows.Forms.OpenFileDialog();
             this.lbTitle = new System.Windows.Forms.Label();
+            this.lbEscala = new System.Windows.Forms.Label();
+            this.lbTranslacao = new System.Windows.Forms.Label();
+            this.lbRotacao = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,6 +62,8 @@
             this.pictureBox1.Size = new System.Drawing.Size(988, 587);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseDown);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseUp);
             // 
             // opf
             // 
@@ -75,12 +80,48 @@
             this.lbTitle.TabIndex = 2;
             this.lbTitle.Text = "Nenhum arquivo aberto,,,";
             // 
+            // lbEscala
+            // 
+            this.lbEscala.AutoSize = true;
+            this.lbEscala.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEscala.ForeColor = System.Drawing.Color.White;
+            this.lbEscala.Location = new System.Drawing.Point(1007, 58);
+            this.lbEscala.Name = "lbEscala";
+            this.lbEscala.Size = new System.Drawing.Size(61, 20);
+            this.lbEscala.TabIndex = 3;
+            this.lbEscala.Text = "Escala:";
+            // 
+            // lbTranslacao
+            // 
+            this.lbTranslacao.AutoSize = true;
+            this.lbTranslacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTranslacao.ForeColor = System.Drawing.Color.White;
+            this.lbTranslacao.Location = new System.Drawing.Point(1007, 94);
+            this.lbTranslacao.Name = "lbTranslacao";
+            this.lbTranslacao.Size = new System.Drawing.Size(91, 20);
+            this.lbTranslacao.TabIndex = 4;
+            this.lbTranslacao.Text = "Translação:";
+            // 
+            // lbRotacao
+            // 
+            this.lbRotacao.AutoSize = true;
+            this.lbRotacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRotacao.ForeColor = System.Drawing.Color.White;
+            this.lbRotacao.Location = new System.Drawing.Point(1007, 168);
+            this.lbRotacao.Name = "lbRotacao";
+            this.lbRotacao.Size = new System.Drawing.Size(74, 20);
+            this.lbRotacao.TabIndex = 5;
+            this.lbRotacao.Text = "Rotação:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1161, 679);
+            this.Controls.Add(this.lbRotacao);
+            this.Controls.Add(this.lbTranslacao);
+            this.Controls.Add(this.lbEscala);
             this.Controls.Add(this.lbTitle);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btAbrir);
@@ -99,6 +140,9 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.OpenFileDialog opf;
         private System.Windows.Forms.Label lbTitle;
+        private System.Windows.Forms.Label lbEscala;
+        private System.Windows.Forms.Label lbTranslacao;
+        private System.Windows.Forms.Label lbRotacao;
     }
 }
 

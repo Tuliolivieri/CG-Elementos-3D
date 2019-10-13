@@ -15,14 +15,26 @@ namespace CG_Elementos_3D
     {
         Objeto3D objeto;
 
-        int dx, dy;
+        int dx, dy, rotacao, translacao, xini, yini;
+
+        double escala;
+
         public Form1()
         {
             InitializeComponent();
             //objeto = new Objeto3D();
 
+            this.pictureBox1.MouseWheel += scroll;
+
             dx = pictureBox1.Width / 2;
             dy = pictureBox1.Height / 2;
+
+            rotacao = translacao = 0;
+            escala = 1;
+
+            lbEscala.Text = "Escala: " + escala;
+            lbTranslacao.Text = "Translação: " + translacao;
+            lbRotacao.Text = "Rotação: " + rotacao; 
 
             apagaPictureBox();
         }
@@ -41,6 +53,37 @@ namespace CG_Elementos_3D
 
                 carregaObjeto(sr);
             }
+        }
+
+        private void scroll(object sender, MouseEventArgs e)
+        {
+            if (e.Delta > 0)
+            {
+                escala += 0.1;
+            }
+            else if(escala > 0.1)
+            {
+                escala -= 0.1;
+
+                if (escala < 0.1)
+                    escala = 0.1;
+            }
+            lbEscala.Text = "Escala: " + escala;
+        }
+        private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            xini = e.X;
+            yini = e.Y;
+
+            Console.WriteLine(e.X + " - " + e.Y);
+        }
+
+        private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            int desx = e.X - xini;
+            int desy = e.Y - yini;
+
+            Console.WriteLine(desx + " - " + desy);
         }
 
         private void carregaObjeto(StreamReader sr)
