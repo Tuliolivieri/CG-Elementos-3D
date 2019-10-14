@@ -36,6 +36,8 @@
             this.lbEscala = new System.Windows.Forms.Label();
             this.lbTranslacao = new System.Windows.Forms.Label();
             this.lbRotacao = new System.Windows.Forms.Label();
+            this.lbTX = new System.Windows.Forms.Label();
+            this.lbTY = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,9 +100,9 @@
             this.lbTranslacao.ForeColor = System.Drawing.Color.White;
             this.lbTranslacao.Location = new System.Drawing.Point(1007, 94);
             this.lbTranslacao.Name = "lbTranslacao";
-            this.lbTranslacao.Size = new System.Drawing.Size(91, 20);
+            this.lbTranslacao.Size = new System.Drawing.Size(87, 20);
             this.lbTranslacao.TabIndex = 4;
-            this.lbTranslacao.Text = "Translação:";
+            this.lbTranslacao.Text = "Translação";
             // 
             // lbRotacao
             // 
@@ -113,12 +115,36 @@
             this.lbRotacao.TabIndex = 5;
             this.lbRotacao.Text = "Rotação:";
             // 
+            // lbTX
+            // 
+            this.lbTX.AutoSize = true;
+            this.lbTX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTX.ForeColor = System.Drawing.Color.White;
+            this.lbTX.Location = new System.Drawing.Point(1074, 114);
+            this.lbTX.Name = "lbTX";
+            this.lbTX.Size = new System.Drawing.Size(24, 20);
+            this.lbTX.TabIndex = 6;
+            this.lbTX.Text = "X:";
+            // 
+            // lbTY
+            // 
+            this.lbTY.AutoSize = true;
+            this.lbTY.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTY.ForeColor = System.Drawing.Color.White;
+            this.lbTY.Location = new System.Drawing.Point(1074, 134);
+            this.lbTY.Name = "lbTY";
+            this.lbTY.Size = new System.Drawing.Size(24, 20);
+            this.lbTY.TabIndex = 7;
+            this.lbTY.Text = "Y:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1161, 679);
+            this.Controls.Add(this.lbTY);
+            this.Controls.Add(this.lbTX);
             this.Controls.Add(this.lbRotacao);
             this.Controls.Add(this.lbTranslacao);
             this.Controls.Add(this.lbEscala);
@@ -143,6 +169,8 @@
         private System.Windows.Forms.Label lbEscala;
         private System.Windows.Forms.Label lbTranslacao;
         private System.Windows.Forms.Label lbRotacao;
+        private System.Windows.Forms.Label lbTX;
+        private System.Windows.Forms.Label lbTY;
     }
 }
 

@@ -15,7 +15,7 @@ namespace CG_Elementos_3D
     {
         Objeto3D objeto;
 
-        int dx, dy, rotacao, translacao, xini, yini;
+        int dx, dy, desx, desy, rotacao, translacao, xini, yini;
 
         double escala;
 
@@ -32,8 +32,9 @@ namespace CG_Elementos_3D
             rotacao = translacao = 0;
             escala = 1;
 
+            desx = desy = 0;
+
             lbEscala.Text = "Escala: " + escala;
-            lbTranslacao.Text = "Translação: " + translacao;
             lbRotacao.Text = "Rotação: " + rotacao; 
 
             apagaPictureBox();
@@ -69,6 +70,11 @@ namespace CG_Elementos_3D
                     escala = 0.1;
             }
             lbEscala.Text = "Escala: " + escala;
+
+            objeto.escala(escala);
+
+            apagaPictureBox();
+            desenha();
         }
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -80,10 +86,18 @@ namespace CG_Elementos_3D
 
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            int desx = e.X - xini;
-            int desy = e.Y - yini;
+            if(Form1.ModifierKeys.ToString().Equals("Control"))
+            { 
+                desx = e.X - xini;
+                desy = e.Y - yini;
 
-            Console.WriteLine(desx + " - " + desy);
+                lbTX.Text = "X: " + desx;
+                lbTY.Text = "Y: " + desy;
+
+                objeto.translacao(desx, desy);
+                apagaPictureBox();
+                desenha();  
+            }
         }
 
         private void carregaObjeto(StreamReader sr)
@@ -152,6 +166,24 @@ namespace CG_Elementos_3D
             }
             pictureBox1.Image = bmp;
         }
+
+        /*private void redesenha()
+        {
+            Bitmap bmp = new Bitmap(pictureBox1.Image);
+            foreach (Face f in objeto.Faces)
+            {
+                //if (isOnPictureBox(v.X + dx, v.Y + dy, pictureBox1))
+                //    bmp.SetPixel(v.X + dx, v.Y + dy, Color.White);
+                Vertice v1 = objeto.Vertices.ElementAt(f.getPosVertice(0) - 1);
+                Vertice v2 = objeto.Vertices.ElementAt(f.getPosVertice(1) - 1);
+                Vertice v3 = objeto.Vertices.ElementAt(f.getPosVertice(2) - 1);
+
+                Bresenham(v1.X + dx, v2.X + dx, v1.Y + dy, v2.Y + dy, bmp);
+                Bresenham(v2.X + dx, v3.X + dx, v2.Y + dy, v3.Y + dy, bmp);
+                Bresenham(v3.X + dx, v1.X + dx, v3.Y + dy, v1.Y + dy, bmp);
+            }
+            pictureBox1.Image = bmp;
+        }*/
 
         private bool isOnPictureBox(int x, int y, PictureBox pb)
         {

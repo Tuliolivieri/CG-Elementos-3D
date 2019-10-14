@@ -12,11 +12,15 @@ namespace CG_Elementos_3D
         private List<Vertice> vertices;
         private List<Vertice> originais;
 
+        private double[,] ma;
+
         public Objeto3D()
         {
             faces = new List<Face>();
             vertices = new List<Vertice>();
             originais = new List<Vertice>();
+
+            ma = geraMA();
         }
         public Objeto3D(List<Face> faces, List<Vertice> vertices)
         {
@@ -28,6 +32,8 @@ namespace CG_Elementos_3D
 
             originais = new List<Vertice>();
             this.originais.AddRange(vertices);
+
+            ma = geraMA();
         }
 
         internal List<Face> Faces { get => faces; set => faces = value; }
@@ -48,6 +54,88 @@ namespace CG_Elementos_3D
                 originais.Add(novo);
                 vertices.Add(novo);
             }
+        }
+
+        public void rotacao(int ang)
+        {
+            double[,] m = new double[3, 3];
+        }
+
+        public void translacao(int tx, int ty)
+        {
+            double[,] m = new double[3, 3];
+
+            m[0, 0] = m[1, 1] = m[2, 2] = 1;
+
+            m[0, 2] = tx;
+            m[1, 2] = ty;
+
+            ma = multiplicaMatriz(m, ma);
+
+            Vertice v, vo;
+
+            for (int i = 0; i < originais.Count; i++)
+            {
+                v = vertices.ElementAt(i);
+                vo = originais.ElementAt(i);
+                
+                v.X = (int)(vo.X * ma[0, 0] + vo.Y * ma[0, 1] + ma[0, 2]);
+                v.Y = (int)(vo.X * ma[1, 0] + vo.Y * ma[1, 1] + ma[1, 2]);
+            }
+        }
+
+        public void escala(double esc)
+        {
+            double[,] m = new double[3, 3];
+
+            m[0, 0] = m[1, 1] = esc;
+            m[2, 2] = 1;
+
+            ma = multiplicaMatriz(m, ma);
+
+            Vertice v, vo;
+
+            for (int i = 0; i < originais.Count; i++)
+            {
+                v = vertices.ElementAt(i);
+                vo = originais.ElementAt(i);
+
+                v.X = (int)(vo.X * ma[0, 0] + vo.Y * ma[0, 1] + ma[0, 2]);
+                v.Y = (int)(vo.X * ma[1, 0] + vo.Y * ma[1, 1] + ma[1, 2]);
+            }
+
+            //ma = geraMA();
+        }
+
+        public double[,] geraMA()
+        {
+            double[,] m = new double[3, 3];
+
+            m[0, 0] = m[1, 1] = m[2, 2] = 1;
+
+            return m;
+        }
+
+        private double[,] multiplicaMatriz(double[,] mat1, double[,] mat2)
+        {
+            double[,] mat = new double[3, 3];
+            int i, j, k;
+            double val;
+
+            for (i = 0; i < 3; i++)
+            {
+                for (j = 0; j < 3; j++)
+                {
+                    val = 0;
+                    for (k = 0; k < 3; k++)
+                    {
+                        val += mat1[i, k] * mat2[k, j];
+                    }
+                    mat[i, j] = val;
+                }
+            }
+
+            return mat;
         }
     }
 }
