@@ -52,7 +52,7 @@ namespace CG_Elementos_3D
             if(originais != null && vertices != null)
             {
                 originais.Add(novo);
-                vertices.Add(novo);
+                vertices.Add(new Vertice(novo.X, novo.Y, novo.Z));
             }
         }
 
@@ -61,16 +61,17 @@ namespace CG_Elementos_3D
             double[,] m = new double[3, 3];
         }
 
-        public void translacao(int tx, int ty)
+        public void translacao(int tx, int ty, int tz)
         {
-            double[,] m = new double[3, 3];
+            double[,] m = new double[4, 4];
 
-            m[0, 0] = m[1, 1] = m[2, 2] = 1;
+            m[0, 0] = m[1, 1] = m[2, 2] = m[3, 3] = 1;
 
-            m[0, 2] = tx;
-            m[1, 2] = ty;
+            m[0, 3] = tx;
+            m[1, 3] = ty;
+            m[2, 3] = tz;
 
-            ma = multiplicaMatriz(m, ma);
+            ma = multiplicaMatriz(ma, m);
 
             Vertice v, vo;
 
@@ -79,19 +80,20 @@ namespace CG_Elementos_3D
                 v = vertices.ElementAt(i);
                 vo = originais.ElementAt(i);
                 
-                v.X = (int)(vo.X * ma[0, 0] + vo.Y * ma[0, 1] + ma[0, 2]);
-                v.Y = (int)(vo.X * ma[1, 0] + vo.Y * ma[1, 1] + ma[1, 2]);
+                v.X = (int)(vo.X * ma[0, 0] + vo.Y * ma[0, 1] + v.Z * ma[0, 2] + ma[0, 3]);
+                v.Y = (int)(vo.X * ma[1, 0] + vo.Y * ma[1, 1] + v.Z * ma[1, 2] + ma[1, 3]);
+                v.Z = (int)(vo.X * ma[2, 0] + vo.Y * ma[2, 1] + v.Z * ma[2, 2] + ma[2, 3]);
             }
         }
 
         public void escala(double esc)
         {
-            double[,] m = new double[3, 3];
+            double[,] m = new double[4, 4];
 
-            m[0, 0] = m[1, 1] = esc;
-            m[2, 2] = 1;
+            m[0, 0] = m[1, 1] = m[2, 2] = esc;
+            m[3, 3] = 1;
 
-            ma = multiplicaMatriz(m, ma);
+            ma = multiplicaMatriz(ma, m);
 
             Vertice v, vo;
 
@@ -100,34 +102,33 @@ namespace CG_Elementos_3D
                 v = vertices.ElementAt(i);
                 vo = originais.ElementAt(i);
 
-                v.X = (int)(vo.X * ma[0, 0] + vo.Y * ma[0, 1] + ma[0, 2]);
-                v.Y = (int)(vo.X * ma[1, 0] + vo.Y * ma[1, 1] + ma[1, 2]);
+                v.X = (int)(vo.X * ma[0, 0] + vo.Y * ma[0, 1] + v.Z * ma[0, 2] + ma[0, 3]);
+                v.Y = (int)(vo.X * ma[1, 0] + vo.Y * ma[1, 1] + v.Z * ma[1, 2] + ma[1, 3]);
+                v.Z = (int)(vo.X * ma[2, 0] + vo.Y * ma[2, 1] + v.Z * ma[2, 2] + ma[2, 3]);
             }
-
-            //ma = geraMA();
         }
 
         public double[,] geraMA()
         {
-            double[,] m = new double[3, 3];
+            double[,] m = new double[4, 4];
 
-            m[0, 0] = m[1, 1] = m[2, 2] = 1;
+            m[0, 0] = m[1, 1] = m[2, 2] = m[3, 3] = 1;
 
             return m;
         }
 
         private double[,] multiplicaMatriz(double[,] mat1, double[,] mat2)
         {
-            double[,] mat = new double[3, 3];
+            double[,] mat = new double[4, 4];
             int i, j, k;
             double val;
 
-            for (i = 0; i < 3; i++)
+            for (i = 0; i < 4; i++)
             {
-                for (j = 0; j < 3; j++)
+                for (j = 0; j < 4; j++)
                 {
                     val = 0;
-                    for (k = 0; k < 3; k++)
+                    for (k = 0; k < 4; k++)
                     {
                         val += mat1[i, k] * mat2[k, j];
                     }
