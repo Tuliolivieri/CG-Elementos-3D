@@ -56,6 +56,22 @@ namespace CG_Elementos_3D
             }
         }
 
+        private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(objeto != null && e.Button == MouseButtons.Right)
+            {
+                desx = e.X - xini;
+                desy = e.Y - yini;
+
+                objeto.translacao(desx, desy, 0);
+                apagaPictureBox();
+                desenha();
+
+                xini = e.X;
+                yini = e.Y;
+            }
+        }
+
         private void scroll(object sender, MouseEventArgs e)
         {
             if (e.Delta > 0)
@@ -177,6 +193,8 @@ namespace CG_Elementos_3D
 
         private void apagaPictureBox()
         {
+            if(pictureBox1.Image != null)
+                pictureBox1.Image.Dispose();
             Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             for (int y = 0; y < pictureBox1.Height; y++)
             {

@@ -75,6 +75,18 @@ namespace CG_Elementos_3D
 
             Vertice v, vo;
 
+            /*int i = 0;
+            int f = originais.Count;
+            Parallel.For(i, f, index =>
+            {
+                v = vertices.ElementAt(i);
+                vo = originais.ElementAt(i);
+
+                v.X = (int)(vo.X * ma[0, 0] + vo.Y * ma[0, 1] + v.Z * ma[0, 2] + ma[0, 3]);
+                v.Y = (int)(vo.X * ma[1, 0] + vo.Y * ma[1, 1] + v.Z * ma[1, 2] + ma[1, 3]);
+                v.Z = (int)(vo.X * ma[2, 0] + vo.Y * ma[2, 1] + v.Z * ma[2, 2] + ma[2, 3]);
+            });*/
+
             for (int i = 0; i < originais.Count; i++)
             {
                 v = vertices.ElementAt(i);
