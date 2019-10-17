@@ -19,6 +19,8 @@ namespace CG_Elementos_3D
 
         double escala;
 
+        DirectBitmap bmp;
+
         public Form1()
         {
             InitializeComponent();
@@ -213,20 +215,51 @@ namespace CG_Elementos_3D
 
         private void desenha()
         {
-            DirectBitmap bmp = new DirectBitmap(pictureBox1.Width, pictureBox1.Height);
-            foreach (Face f in objeto.Faces)
+            //pictureBox1.Image.Dispose();
+
+            //DirectBitmap bmp = new DirectBitmap(pictureBox1.Width, pictureBox1.Height);
+            //pictureBox1.Image = (Image)bmp.Bitmap;
+        
+            //foreach (Face f in objeto.Faces)
+            Parallel.For(0, objeto.Faces.Count, i =>
             {
                 //if (isOnPictureBox(v.X + dx, v.Y + dy, pictureBox1))
                 //    bmp.SetPixel(v.X + dx, v.Y + dy, Color.White);
+                Face f = objeto.Faces[i];
                 Vertice v1 = objeto.Vertices.ElementAt(f.getPosVertice(0) - 1);
-                Vertice v2= objeto.Vertices.ElementAt(f.getPosVertice(1) - 1);
+                Vertice v2 = objeto.Vertices.ElementAt(f.getPosVertice(1) - 1);
                 Vertice v3 = objeto.Vertices.ElementAt(f.getPosVertice(2) - 1);
 
-                Bresenham(v1.X + dx, v2.X + dx, v1.Y + dy, v2.Y + dy, bmp);
+                /*Bresenham(v1.X + dx, v2.X + dx, v1.Y + dy, v2.Y + dy, bmp);
                 Bresenham(v2.X + dx, v3.X + dx, v2.Y + dy, v3.Y + dy, bmp);
-                Bresenham(v3.X + dx, v1.X + dx, v3.Y + dy, v1.Y + dy, bmp);
-            }
-            pictureBox1.Image = bmp.Bitmap;
+                Bresenham(v3.X + dx, v1.X + dx, v3.Y + dy, v1.Y + dy, bmp);*/
+                DDA(v1.X + dx, v1.Y + dy, v2.X + dx, v2.Y + dy);
+                DDA(v2.X + dx, v2.Y + dy, v3.X + dx, v3.Y + dy);
+                DDA(v3.X + dx, v3.Y + dy, v1.X + dx, v1.Y + dy);
+            });
+            pictureBox1.Refresh();
+            //pictureBox1.Image = bmp.Bitmap
+
+            ////////////////
+            /*
+            Parallel.For(0, objeto3d1.Faces.Count, i =>
+            {
+                var vet = objeto3d1.Faces[i];
+                for (int y = 0; y < 2; y++)
+                {
+                    double[] vertss = objeto3d1.Vertatual[vet[y] - 1];
+                    double[] vertss2 = objeto3d1.Vertatual[vet[y + 1] - 1];
+                    bresenham((int)vertss[0] + cx, (int)vertss[1] + cy, (int)vertss2[0] + cx, (int)vertss2[1] + cy, cor);
+
+                }
+                double[] verts = objeto3d1.Vertatual[vet[2] - 1];
+                double[] verts2 = objeto3d1.Vertatual[vet[0] - 1];
+                bresenham((int)verts[0] + cx, (int)verts[1] + cy, (int)verts2[0] + cx, (int)verts2[1] + cy, cor);
+
+            });
+            */
+            /////////////////
+
         }
 
         private bool isOnPictureBox(int x, int y, PictureBox pb)
@@ -238,12 +271,16 @@ namespace CG_Elementos_3D
         {
             if(pictureBox1.Image != null)
                 pictureBox1.Image.Dispose();
-            DirectBitmap bmp = new DirectBitmap(pictureBox1.Width, pictureBox1.Height);
-            for (int y = 0; y < pictureBox1.Height; y++)
+            //DirectBitmap bmp = new DirectBitmap(pictureBox1.Width, pictureBox1.Height);
+
+
+            /*for (int y = 0; y < pictureBox1.Height; y++)
             {
                 for (int x = 0; x < pictureBox1.Width; x++)
                     bmp.SetPixel(x, y, Color.Black);
-            }
+            */
+            bmp = new DirectBitmap(pictureBox1.Width, pictureBox1.Height);
+            
             pictureBox1.Image = bmp.Bitmap;
         }
 
@@ -331,6 +368,71 @@ namespace CG_Elementos_3D
                 }
             }
 
+        }
+        private void DDA(int x1, int y1, int x2, int y2)  /// FUNCIONA
+        {
+            //Bitmap bmp = new Bitmap(pictureBox1.Image);
+
+            int length, i;
+            double x, y, xinc, yinc;
+
+            if (x1 > x2)
+            {
+                int aux = x1;
+                x1 = x2;
+                x2 = aux;
+                aux = y1;
+                y1 = y2;
+                y2 = aux;
+            }
+
+            length = Math.Abs(x2 - x1);
+
+            if (Math.Abs(y2 - y1) > length)
+                length = Math.Abs(y2 - y1);
+
+            xinc = (double)(x2 - x1) / length;
+            yinc = (double)(y2 - y1) / length;
+
+            x = x1;
+            y = y1;
+
+            if (y1 == y2)
+            {
+                for (x = x1; x <= x2; x++)
+                {
+                    if (isOnPictureBox((int)x, (int)y, pictureBox1))
+                        bmp.SetPixel((int)x, (int)y, Color.White);
+                }
+            }
+            else if (x1 == x2)
+            {
+                if (y1 > y2)
+                {
+                    int aux = y1;
+                    y1 = y2;
+                    y2 = aux;
+                }
+                for (y = y1; y <= y2; y++)
+                {
+                    if (isOnPictureBox((int)x, (int)y, pictureBox1))
+                        bmp.SetPixel((int)x, (int)y, Color.White);
+                }
+            }
+            else
+            {
+                while (x <= x2)
+                {
+                    if (isOnPictureBox((int)x, (int)y, pictureBox1))
+                        bmp.SetPixel((int)x, (int)y, Color.White);
+                    x += xinc;
+                    y += yinc;
+                }
+            }
+
+
+            //pictureBox1.Image = bmp.Bitmap;
+            
         }
     }
 }
