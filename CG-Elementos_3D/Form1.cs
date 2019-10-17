@@ -15,7 +15,7 @@ namespace CG_Elementos_3D
     {
         Objeto3D objeto;
 
-        int dx, dy, desx, desy, desz, rotacao, translacao, xini, yini;
+        int dx, dy, desx, desy, desz, ang_x, ang_y, ang_z, translacao, xini, yini;
 
         double escala;
 
@@ -29,13 +29,14 @@ namespace CG_Elementos_3D
             dx = pictureBox1.Width / 2;
             dy = pictureBox1.Height / 2;
 
-            rotacao = translacao = 0;
+            ang_x = ang_y = ang_z = 0;
+
             escala = 1;
 
             desx = desy = desz = 0;
 
             lbEscala.Text = "Escala: " + escala;
-            lbRotacao.Text = "Rotação: " + rotacao; 
+            //lbRotacao.Text = "Rotação: " + rotacao; 
 
             apagaPictureBox();
         }
@@ -58,52 +59,94 @@ namespace CG_Elementos_3D
 
         private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if(objeto != null && e.Button == MouseButtons.Right)
+            if(objeto != null)
             {
-                desx = e.X - xini;
-                desy = e.Y - yini;
+                if (e.Button == MouseButtons.Right)
+                {
+                    desx = e.X - xini;
+                    desy = e.Y - yini;
 
-                objeto.translacao(desx, desy, 0);
-                apagaPictureBox();
-                desenha();
+                    objeto.translacao(desx, desy, 0);
+                    apagaPictureBox();
+                    desenha();
 
-                xini = e.X;
-                yini = e.Y;
+                    xini = e.X;
+                    yini = e.Y;
+                }
+                else if (e.Button == MouseButtons.Left)
+                {
+                    //Console.WriteLine("Rotacionar");
+                    desx = e.X - xini;
+                    desy = e.Y - yini;
+
+                    ang_x = (int) (-desy * Math.PI / 180);
+                    ang_y = (int) (desx * Math.PI / 180);
+
+                    //ang_x = 1; ang_y = 1;
+
+                    objeto.rotacao_x(ang_x);
+                    objeto.rotacao_y(ang_y);
+
+                    apagaPictureBox();
+                    desenha();
+
+                    //xini = e.X;
+                    //yini = e.Y;
+                }
             }
         }
 
         private void scroll(object sender, MouseEventArgs e)
         {
-            if (e.Delta > 0)
+            if(objeto != null)
             {
-                escala += 0.1;
-                objeto.escala(1.1);
+                if (Form1.ModifierKeys == Keys.Control) /// ROTAÇÃO NO EIXO Z
+                {
+                    int ang = 0;
+                    if (e.Delta > 0)
+                    {
+                        ang_z++;
+                        ang = 1;
+                    }
+                    else
+                    {
+                        ang_z--;
+                        ang = -1;
+                    }
+                    //ang = (int) (ang * (Math.PI / 180));
+                    objeto.rotacao_z(ang);
+                    apagaPictureBox();
+                    desenha();
+                }
+                else if (e.Delta > 0)
+                {
+                    escala += 0.1;
+                    objeto.escala(1.1);
+                }
+                else if (escala > 0.1)
+                {
+                    escala -= 0.1;
+
+                    if (escala < 0.1)
+                        escala = 0.1;
+
+                    objeto.escala(0.9);
+                }
+                lbEscala.Text = "Escala: " + escala;
+
+                apagaPictureBox();
+                desenha();
             }
-            else if(escala > 0.1)
-            {
-                escala -= 0.1;
-
-                if (escala < 0.1)
-                    escala = 0.1;
-
-                objeto.escala(0.9);
-            }
-            lbEscala.Text = "Escala: " + escala;
-
-            apagaPictureBox();
-            desenha();
         }
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             xini = e.X;
             yini = e.Y;
-
-            Console.WriteLine(e.X + " - " + e.Y);
         }
 
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Right)
+            if(objeto != null && e.Button == MouseButtons.Right)
             //if(Form1.ModifierKeys.ToString().Equals("Control"))
             { 
                 desx = e.X - xini;
@@ -170,7 +213,7 @@ namespace CG_Elementos_3D
 
         private void desenha()
         {
-            Bitmap bmp = new Bitmap(pictureBox1.Image);
+            DirectBitmap bmp = new DirectBitmap(pictureBox1.Width, pictureBox1.Height);
             foreach (Face f in objeto.Faces)
             {
                 //if (isOnPictureBox(v.X + dx, v.Y + dy, pictureBox1))
@@ -183,7 +226,7 @@ namespace CG_Elementos_3D
                 Bresenham(v2.X + dx, v3.X + dx, v2.Y + dy, v3.Y + dy, bmp);
                 Bresenham(v3.X + dx, v1.X + dx, v3.Y + dy, v1.Y + dy, bmp);
             }
-            pictureBox1.Image = bmp;
+            pictureBox1.Image = bmp.Bitmap;
         }
 
         private bool isOnPictureBox(int x, int y, PictureBox pb)
@@ -195,16 +238,16 @@ namespace CG_Elementos_3D
         {
             if(pictureBox1.Image != null)
                 pictureBox1.Image.Dispose();
-            Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            DirectBitmap bmp = new DirectBitmap(pictureBox1.Width, pictureBox1.Height);
             for (int y = 0; y < pictureBox1.Height; y++)
             {
                 for (int x = 0; x < pictureBox1.Width; x++)
                     bmp.SetPixel(x, y, Color.Black);
             }
-            pictureBox1.Image = bmp;
+            pictureBox1.Image = bmp.Bitmap;
         }
 
-        public void Bresenham(int x1, int x2, int y1, int y2, Bitmap bmp) /// FUNCIONA
+        public void Bresenham(int x1, int x2, int y1, int y2, DirectBitmap bmp) /// FUNCIONA
         {
             int dx, dy, incE, incNE, declive, d, x, y;
 

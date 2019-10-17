@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aresta.cs" />
+    <Compile Include="DirectBitmap.cs" />
     <Compile Include="Face.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

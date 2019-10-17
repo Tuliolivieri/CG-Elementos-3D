@@ -92,9 +92,9 @@ namespace CG_Elementos_3D
                 v = vertices.ElementAt(i);
                 vo = originais.ElementAt(i);
                 
-                v.X = (int)(vo.X * ma[0, 0] + vo.Y * ma[0, 1] + v.Z * ma[0, 2] + ma[0, 3]);
-                v.Y = (int)(vo.X * ma[1, 0] + vo.Y * ma[1, 1] + v.Z * ma[1, 2] + ma[1, 3]);
-                v.Z = (int)(vo.X * ma[2, 0] + vo.Y * ma[2, 1] + v.Z * ma[2, 2] + ma[2, 3]);
+                v.X = (int)(vo.X * ma[0, 0] + vo.Y * ma[0, 1] + vo.Z * ma[0, 2] + ma[0, 3]);
+                v.Y = (int)(vo.X * ma[1, 0] + vo.Y * ma[1, 1] + vo.Z * ma[1, 2] + ma[1, 3]);
+                v.Z = (int)(vo.X * ma[2, 0] + vo.Y * ma[2, 1] + vo.Z * ma[2, 2] + ma[2, 3]);
             }
         }
 
@@ -114,9 +114,84 @@ namespace CG_Elementos_3D
                 v = vertices.ElementAt(i);
                 vo = originais.ElementAt(i);
 
-                v.X = (int)(vo.X * ma[0, 0] + vo.Y * ma[0, 1] + v.Z * ma[0, 2] + ma[0, 3]);
-                v.Y = (int)(vo.X * ma[1, 0] + vo.Y * ma[1, 1] + v.Z * ma[1, 2] + ma[1, 3]);
-                v.Z = (int)(vo.X * ma[2, 0] + vo.Y * ma[2, 1] + v.Z * ma[2, 2] + ma[2, 3]);
+                v.X = (int)(vo.X * ma[0, 0] + vo.Y * ma[0, 1] + vo.Z * ma[0, 2] + ma[0, 3]);
+                v.Y = (int)(vo.X * ma[1, 0] + vo.Y * ma[1, 1] + vo.Z * ma[1, 2] + ma[1, 3]);
+                v.Z = (int)(vo.X * ma[2, 0] + vo.Y * ma[2, 1] + vo.Z * ma[2, 2] + ma[2, 3]);
+            }
+        }
+
+        public void rotacao_x(int ang)
+        {
+            double[,] m = new double[4, 4];
+
+            m[0, 0] = m[3, 3] = 1;
+
+            m[1, 1] = m[2, 2] = Math.Cos(ang);
+            m[1, 2] = -Math.Sin(ang);
+            m[2, 1] = Math.Sin(ang);
+
+            ma = multiplicaMatriz(ma, m);
+
+            Vertice v, vo;
+
+            for (int i = 0; i < originais.Count; i++)
+            {
+                v = vertices.ElementAt(i);
+                vo = originais.ElementAt(i);
+
+                v.X = (int)(vo.X * ma[0, 0] + vo.Y * ma[0, 1] + vo.Z * ma[0, 2] + ma[0, 3]);
+                v.Y = (int)(vo.X * ma[1, 0] + vo.Y * ma[1, 1] + vo.Z * ma[1, 2] + ma[1, 3]);
+                v.Z = (int)(vo.X * ma[2, 0] + vo.Y * ma[2, 1] + vo.Z * ma[2, 2] + ma[2, 3]);
+            }
+        }
+
+        public void rotacao_y(int ang)
+        {
+            double[,] m = new double[4, 4];
+
+            m[1, 1] = m[3, 3] = 1;
+
+            m[0, 0] = m[2, 2] = Math.Cos(ang);
+            m[2, 0] = -Math.Sin(ang);
+            m[0, 2] = Math.Sin(ang);
+
+            ma = multiplicaMatriz(ma, m);
+
+            Vertice v, vo;
+
+            for (int i = 0; i < originais.Count; i++)
+            {
+                v = vertices.ElementAt(i);
+                vo = originais.ElementAt(i);
+
+                v.X = (int)(vo.X * ma[0, 0] + vo.Y * ma[0, 1] + vo.Z * ma[0, 2] + ma[0, 3]);
+                v.Y = (int)(vo.X * ma[1, 0] + vo.Y * ma[1, 1] + vo.Z * ma[1, 2] + ma[1, 3]);
+                v.Z = (int)(vo.X * ma[2, 0] + vo.Y * ma[2, 1] + vo.Z * ma[2, 2] + ma[2, 3]);
+            }
+        }
+
+        public void rotacao_z(int ang)
+        {
+            double[,] m = new double[4, 4];
+
+            m[2, 2] = m[3, 3] = 1;
+
+            m[0, 0] = m[1, 1] = Math.Cos(ang);
+            m[0, 1] = -Math.Sin(ang);
+            m[1, 0] = Math.Sin(ang);
+
+            ma = multiplicaMatriz(ma, m);
+
+            Vertice v, vo;
+
+            for (int i = 0; i < originais.Count; i++)
+            {
+                v = vertices.ElementAt(i);
+                vo = originais.ElementAt(i);
+
+                v.X = (int)(vo.X * ma[0, 0] + vo.Y * ma[0, 1] + vo.Z * ma[0, 2] + ma[0, 3]);
+                v.Y = (int)(vo.X * ma[1, 0] + vo.Y * ma[1, 1] + vo.Z * ma[1, 2] + ma[1, 3]);
+                v.Z = (int)(vo.X * ma[2, 0] + vo.Y * ma[2, 1] + vo.Z * ma[2, 2] + ma[2, 3]);
             }
         }
 
