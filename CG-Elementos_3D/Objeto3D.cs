@@ -120,7 +120,7 @@ namespace CG_Elementos_3D
             }
         }
 
-        public void rotacao_x(int ang)
+        public void rotacao_x(double ang)
         {
             double[,] m = new double[4, 4];
 
@@ -145,7 +145,7 @@ namespace CG_Elementos_3D
             }
         }
 
-        public void rotacao_y(int ang)
+        public void rotacao_y(double ang)
         {
             double[,] m = new double[4, 4];
 
@@ -170,7 +170,7 @@ namespace CG_Elementos_3D
             }
         }
 
-        public void rotacao_z(int ang)
+        public void rotacao_z(double ang)
         {
             double[,] m = new double[4, 4];
 

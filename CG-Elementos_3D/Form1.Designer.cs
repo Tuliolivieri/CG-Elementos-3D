@@ -38,7 +38,10 @@
             this.lbRotacao = new System.Windows.Forms.Label();
             this.lbTX = new System.Windows.Forms.Label();
             this.lbTY = new System.Windows.Forms.Label();
+            this.groupBox = new System.Windows.Forms.GroupBox();
+            this.cbBackCull = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // btAbrir
@@ -138,12 +141,34 @@
             this.lbTY.TabIndex = 7;
             this.lbTY.Text = "Y:";
             // 
+            // groupBox
+            // 
+            this.groupBox.Controls.Add(this.cbBackCull);
+            this.groupBox.ForeColor = System.Drawing.Color.White;
+            this.groupBox.Location = new System.Drawing.Point(139, 13);
+            this.groupBox.Name = "groupBox";
+            this.groupBox.Size = new System.Drawing.Size(200, 39);
+            this.groupBox.TabIndex = 8;
+            this.groupBox.TabStop = false;
+            this.groupBox.Text = "Funções";
+            // 
+            // cbBackCull
+            // 
+            this.cbBackCull.AutoSize = true;
+            this.cbBackCull.Location = new System.Drawing.Point(7, 20);
+            this.cbBackCull.Name = "cbBackCull";
+            this.cbBackCull.Size = new System.Drawing.Size(106, 17);
+            this.cbBackCull.TabIndex = 0;
+            this.cbBackCull.Text = "Backface Culling";
+            this.cbBackCull.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1161, 679);
+            this.Controls.Add(this.groupBox);
             this.Controls.Add(this.lbTY);
             this.Controls.Add(this.lbTX);
             this.Controls.Add(this.lbRotacao);
@@ -156,6 +181,8 @@
             this.Name = "Form1";
             this.Text = "Elementos 3D";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox.ResumeLayout(false);
+            this.groupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,6 +199,8 @@
         private System.Windows.Forms.Label lbRotacao;
         private System.Windows.Forms.Label lbTX;
         private System.Windows.Forms.Label lbTY;
+        private System.Windows.Forms.GroupBox groupBox;
+        private System.Windows.Forms.CheckBox cbBackCull;
     }
 }
 

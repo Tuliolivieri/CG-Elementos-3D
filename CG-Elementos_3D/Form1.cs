@@ -15,8 +15,8 @@ namespace CG_Elementos_3D
     {
         Objeto3D objeto;
 
-        int dx, dy, desx, desy, desz, ang_x, ang_y, ang_z, translacao, xini, yini;
-
+        int dx, dy, desx, desy, desz, translacao, xini, yini;
+        double ang_x, ang_y, ang_z;
         double escala;
 
         DirectBitmap bmp;
@@ -84,8 +84,8 @@ namespace CG_Elementos_3D
                     desx = e.X - xini;
                     desy = e.Y - yini;
 
-                    ang_x = (int) (-desy * Math.PI / 180);
-                    ang_y = (int) (desx * Math.PI / 180);
+                    ang_x = (-desy * Math.PI / 180);
+                    ang_y = (desx * Math.PI / 180);
 
                     //ang_x = 1; ang_y = 1;
 
@@ -95,8 +95,8 @@ namespace CG_Elementos_3D
                     apagaPictureBox();
                     desenha();
 
-                    //xini = e.X;
-                    //yini = e.Y;
+                    xini = e.X;
+                    yini = e.Y;
                 }
             }
         }
@@ -110,15 +110,15 @@ namespace CG_Elementos_3D
                     int ang = 0;
                     if (e.Delta > 0)
                     {
-                        ang_z++;
+                        ang_z = 1;
                         ang = 1;
                     }
                     else
                     {
-                        ang_z--;
+                        ang_z = -1;
                         ang = -1;
                     }
-                    //ang = (int) (ang * (Math.PI / 180));
+                    ang_z = (ang_z * (Math.PI / 180));
                     objeto.rotacao_z(ang);
                     apagaPictureBox();
                     desenha();
@@ -190,8 +190,6 @@ namespace CG_Elementos_3D
                         Vertice v = new Vertice((int)double.Parse(splitada[0]), (int)double.Parse(splitada[1]), (int)double.Parse(splitada[2]));
 
                         objeto.addVertice(v);
-
-                        Console.WriteLine(v.X + " - " + v.Y + " - " + v.Z);
                     }
 
                     if (linha[0] == 'f')    /// FACE
