@@ -8,21 +8,21 @@ namespace CG_Elementos_3D
 {
     class Vertice
     {
-        private int x;
-        private int y;
-        private int z;
+        private double x;
+        private double y;
+        private double z;
 
         public Vertice() { }
 
-        public Vertice(int x, int y, int z)
+        public Vertice(double x, double y, double z)
         {
             this.x = x;
             this.y = y;
             this.z = z;
         }
 
-        public int X { get => x; set => x = value; }
-        public int Y { get => y; set => y = value; }
-        public int Z { get => z; set => z = value; }
+        public double X { get => x; set => x = value; }
+        public double Y { get => y; set => y = value; }
+        public double Z { get => z; set => z = value; }
     }
 }

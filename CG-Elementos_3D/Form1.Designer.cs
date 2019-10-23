@@ -64,7 +64,7 @@
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Location = new System.Drawing.Point(13, 58);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(988, 587);
+            this.pictureBox1.Size = new System.Drawing.Size(988, 691);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseDown);
@@ -80,7 +80,7 @@
             this.lbTitle.AutoSize = true;
             this.lbTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTitle.ForeColor = System.Drawing.Color.White;
-            this.lbTitle.Location = new System.Drawing.Point(13, 652);
+            this.lbTitle.Location = new System.Drawing.Point(10, 752);
             this.lbTitle.Name = "lbTitle";
             this.lbTitle.Size = new System.Drawing.Size(169, 17);
             this.lbTitle.TabIndex = 2;
@@ -91,7 +91,7 @@
             this.lbEscala.AutoSize = true;
             this.lbEscala.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEscala.ForeColor = System.Drawing.Color.White;
-            this.lbEscala.Location = new System.Drawing.Point(1007, 58);
+            this.lbEscala.Location = new System.Drawing.Point(386, 13);
             this.lbEscala.Name = "lbEscala";
             this.lbEscala.Size = new System.Drawing.Size(61, 20);
             this.lbEscala.TabIndex = 3;
@@ -102,7 +102,7 @@
             this.lbTranslacao.AutoSize = true;
             this.lbTranslacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTranslacao.ForeColor = System.Drawing.Color.White;
-            this.lbTranslacao.Location = new System.Drawing.Point(1007, 94);
+            this.lbTranslacao.Location = new System.Drawing.Point(546, 13);
             this.lbTranslacao.Name = "lbTranslacao";
             this.lbTranslacao.Size = new System.Drawing.Size(87, 20);
             this.lbTranslacao.TabIndex = 4;
@@ -113,7 +113,7 @@
             this.lbRotacao.AutoSize = true;
             this.lbRotacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbRotacao.ForeColor = System.Drawing.Color.White;
-            this.lbRotacao.Location = new System.Drawing.Point(1007, 168);
+            this.lbRotacao.Location = new System.Drawing.Point(742, 13);
             this.lbRotacao.Name = "lbRotacao";
             this.lbRotacao.Size = new System.Drawing.Size(74, 20);
             this.lbRotacao.TabIndex = 5;
@@ -124,7 +124,7 @@
             this.lbTX.AutoSize = true;
             this.lbTX.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTX.ForeColor = System.Drawing.Color.White;
-            this.lbTX.Location = new System.Drawing.Point(1074, 114);
+            this.lbTX.Location = new System.Drawing.Point(639, 13);
             this.lbTX.Name = "lbTX";
             this.lbTX.Size = new System.Drawing.Size(24, 20);
             this.lbTX.TabIndex = 6;
@@ -135,7 +135,7 @@
             this.lbTY.AutoSize = true;
             this.lbTY.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTY.ForeColor = System.Drawing.Color.White;
-            this.lbTY.Location = new System.Drawing.Point(1074, 134);
+            this.lbTY.Location = new System.Drawing.Point(639, 32);
             this.lbTY.Name = "lbTY";
             this.lbTY.Size = new System.Drawing.Size(24, 20);
             this.lbTY.TabIndex = 7;
@@ -167,7 +167,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1161, 679);
+            this.ClientSize = new System.Drawing.Size(1306, 778);
             this.Controls.Add(this.groupBox);
             this.Controls.Add(this.lbTY);
             this.Controls.Add(this.lbTX);

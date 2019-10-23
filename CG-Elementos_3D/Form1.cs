@@ -119,7 +119,7 @@ namespace CG_Elementos_3D
                         ang = -1;
                     }
                     ang_z = (ang_z * (Math.PI / 180));
-                    objeto.rotacao_z(ang);
+                    objeto.rotacao_z(ang_z);
                     apagaPictureBox();
                     desenha();
                 }
@@ -229,9 +229,9 @@ namespace CG_Elementos_3D
                 Vertice v2 = objeto.Vertices.ElementAt(f.getPosVertice(1) - 1);
                 Vertice v3 = objeto.Vertices.ElementAt(f.getPosVertice(2) - 1);
 
-                Bresenham(v1.X + dx, v2.X + dx, v1.Y + dy, v2.Y + dy, bmp);
-                Bresenham(v2.X + dx, v3.X + dx, v2.Y + dy, v3.Y + dy, bmp);
-                Bresenham(v3.X + dx, v1.X + dx, v3.Y + dy, v1.Y + dy, bmp);
+                Bresenham((int) v1.X + dx, (int) v2.X + dx, (int) v1.Y + dy, (int) v2.Y + dy, bmp);
+                Bresenham((int) v2.X + dx, (int) v3.X + dx, (int) v2.Y + dy, (int) v3.Y + dy, bmp);
+                Bresenham((int) v3.X + dx, (int) v1.X + dx, (int) v3.Y + dy, (int) v1.Y + dy, bmp);
             });
             pictureBox1.Refresh();
         }
