@@ -229,9 +229,22 @@ namespace CG_Elementos_3D
                 Vertice v2 = objeto.Vertices.ElementAt(f.getPosVertice(1) - 1);
                 Vertice v3 = objeto.Vertices.ElementAt(f.getPosVertice(2) - 1);
 
-                Bresenham((int) v1.X + dx, (int) v2.X + dx, (int) v1.Y + dy, (int) v2.Y + dy, bmp);
-                Bresenham((int) v2.X + dx, (int) v3.X + dx, (int) v2.Y + dy, (int) v3.Y + dy, bmp);
-                Bresenham((int) v3.X + dx, (int) v1.X + dx, (int) v3.Y + dy, (int) v1.Y + dy, bmp);
+                if(cbBackCull.CheckState == CheckState.Checked)
+                {
+                    if(f.getVisivel(objeto.Vertices))
+                    {
+                        Bresenham((int)v1.X + dx, (int)v2.X + dx, (int)v1.Y + dy, (int)v2.Y + dy, bmp);
+                        Bresenham((int)v2.X + dx, (int)v3.X + dx, (int)v2.Y + dy, (int)v3.Y + dy, bmp);
+                        Bresenham((int)v3.X + dx, (int)v1.X + dx, (int)v3.Y + dy, (int)v1.Y + dy, bmp);
+                    }
+                }
+                else
+                {
+                    Bresenham((int)v1.X + dx, (int)v2.X + dx, (int)v1.Y + dy, (int)v2.Y + dy, bmp);
+                    Bresenham((int)v2.X + dx, (int)v3.X + dx, (int)v2.Y + dy, (int)v3.Y + dy, bmp);
+                    Bresenham((int)v3.X + dx, (int)v1.X + dx, (int)v3.Y + dy, (int)v1.Y + dy, bmp);
+                }
+                    
             });
             pictureBox1.Refresh();
         }

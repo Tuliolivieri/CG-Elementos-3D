@@ -71,7 +71,7 @@ namespace CG_Elementos_3D
             m[1, 3] = ty;
             m[2, 3] = tz;
 
-            ma = multiplicaMatriz(ma, m);
+            ma = multiplicaMatriz(m, ma);
 
             Vertice v, vo;
 
