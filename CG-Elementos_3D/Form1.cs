@@ -20,6 +20,9 @@ namespace CG_Elementos_3D
         double escala;
 
         DirectBitmap bmp;
+        DirectBitmap bmpxy;
+        DirectBitmap bmpyz;
+        DirectBitmap bmpxz;
 
         public Form1()
         {
@@ -42,6 +45,15 @@ namespace CG_Elementos_3D
 
             bmp = new DirectBitmap(pictureBox1.Width, pictureBox1.Height);
             pictureBox1.Image = bmp.Bitmap;
+
+            bmpxy = new DirectBitmap(pbPXY.Width, pbPXY.Height);
+            pbPXY.Image = bmpxy.Bitmap;
+
+            bmpyz = new DirectBitmap(pbPYZ.Width, pbPYZ.Height);
+            pbPYZ.Image = bmpyz.Bitmap;
+
+            bmpxz = new DirectBitmap(pbPXZ.Width, pbPXZ.Height);
+            pbPXZ.Image = bmpxz.Bitmap;
 
             apagaPictureBox();
         }
@@ -233,20 +245,147 @@ namespace CG_Elementos_3D
                 {
                     if(f.getVisivel(objeto.Vertices))
                     {
-                        Bresenham((int)v1.X + dx, (int)v2.X + dx, (int)v1.Y + dy, (int)v2.Y + dy, bmp);
-                        Bresenham((int)v2.X + dx, (int)v3.X + dx, (int)v2.Y + dy, (int)v3.Y + dy, bmp);
-                        Bresenham((int)v3.X + dx, (int)v1.X + dx, (int)v3.Y + dy, (int)v1.Y + dy, bmp);
+                        Bresenham((int)v1.X + dx, (int)v2.X + dx, (int)v1.Y + dy, (int)v2.Y + dy, bmp, pictureBox1);
+                        Bresenham((int)v2.X + dx, (int)v3.X + dx, (int)v2.Y + dy, (int)v3.Y + dy, bmp, pictureBox1);
+                        Bresenham((int)v3.X + dx, (int)v1.X + dx, (int)v3.Y + dy, (int)v1.Y + dy, bmp, pictureBox1);
                     }
                 }
                 else
                 {
-                    Bresenham((int)v1.X + dx, (int)v2.X + dx, (int)v1.Y + dy, (int)v2.Y + dy, bmp);
-                    Bresenham((int)v2.X + dx, (int)v3.X + dx, (int)v2.Y + dy, (int)v3.Y + dy, bmp);
-                    Bresenham((int)v3.X + dx, (int)v1.X + dx, (int)v3.Y + dy, (int)v1.Y + dy, bmp);
+                    Bresenham((int)v1.X + dx, (int)v2.X + dx, (int)v1.Y + dy, (int)v2.Y + dy, bmp, pictureBox1);
+                    Bresenham((int)v2.X + dx, (int)v3.X + dx, (int)v2.Y + dy, (int)v3.Y + dy, bmp, pictureBox1);
+                    Bresenham((int)v3.X + dx, (int)v1.X + dx, (int)v3.Y + dy, (int)v1.Y + dy, bmp, pictureBox1);
                 }
                     
             });
             pictureBox1.Refresh();
+
+            desenha_xy();
+            desenha_yz();
+            desenha_xz();
+        }
+
+        private void desenha_xy()
+        {
+            pbPXY.Image = null;
+            Console.WriteLine("DESENHA XY");
+            bmpxy.Dispose();
+            bmpxy = new DirectBitmap(pbPXY.Width, pbPXY.Height);
+
+            pbPXY.Image = bmpxy.Bitmap;
+
+            double rx = pbPXY.Width / pictureBox1.Width + 0.5;
+            double ry = pbPXY.Height / pictureBox1.Height + 0.5;
+
+            //Console.WriteLine(rx);
+
+            Parallel.For(0, objeto.Faces.Count, i =>
+            {
+                Face f = objeto.Faces[i];
+                Vertice v1 = objeto.Vertices.ElementAt(f.getPosVertice(0) - 1);
+                Vertice v2 = objeto.Vertices.ElementAt(f.getPosVertice(1) - 1);
+                Vertice v3 = objeto.Vertices.ElementAt(f.getPosVertice(2) - 1);
+
+                if (cbBackCull.CheckState == CheckState.Checked)
+                {
+                    if (f.getVisivel(objeto.Vertices))
+                    {
+                        Bresenham((int) ((v1.X + dx) * rx - 50), (int) ((v2.X + dx) * rx - 50), (int) ((v1.Y + dy) * ry - 80), (int) ((v2.Y + dy) * ry - 80), bmpxy, pbPXY);
+                        Bresenham((int) ((v2.X + dx) * rx - 50), (int) ((v3.X + dx) * rx - 50), (int) ((v2.Y + dy) * ry - 80), (int) ((v3.Y + dy) * ry - 80), bmpxy, pbPXY);
+                        Bresenham((int) ((v3.X + dx) * rx - 50), (int) ((v1.X + dx) * rx - 50), (int) ((v3.Y + dy) * ry - 80), (int) ((v1.Y + dy) * ry - 80), bmpxy, pbPXY);
+                    }
+                }
+                else
+                {
+                    Bresenham((int)((v1.X + dx) * rx - 50), (int)((v2.X + dx) * rx - 50), (int)((v1.Y + dy) * ry - 80), (int)((v2.Y + dy) * ry - 80), bmpxy, pbPXY);
+                    Bresenham((int)((v2.X + dx) * rx - 50), (int)((v3.X + dx) * rx - 50), (int)((v2.Y + dy) * ry - 80), (int)((v3.Y + dy) * ry - 80), bmpxy, pbPXY);
+                    Bresenham((int)((v3.X + dx) * rx - 50), (int)((v1.X + dx) * rx - 50), (int)((v3.Y + dy) * ry - 80), (int)((v1.Y + dy) * ry - 80), bmpxy, pbPXY);
+                }
+
+            });
+            pbPXY.Refresh();
+        }
+
+        private void desenha_yz()
+        {
+            pbPYZ.Image = null;
+            
+            bmpyz.Dispose();
+            bmpyz = new DirectBitmap(pbPYZ.Width, pbPYZ.Height);
+
+            pbPYZ.Image = bmpyz.Bitmap;
+
+            double rx = pbPYZ.Width / pictureBox1.Width + 0.5;
+            double ry = pbPYZ.Height / pictureBox1.Height + 0.5;
+
+            //Console.WriteLine(rx);
+
+            Parallel.For(0, objeto.Faces.Count, i =>
+            {
+                Face f = objeto.Faces[i];
+                Vertice v1 = objeto.Vertices.ElementAt(f.getPosVertice(0) - 1);
+                Vertice v2 = objeto.Vertices.ElementAt(f.getPosVertice(1) - 1);
+                Vertice v3 = objeto.Vertices.ElementAt(f.getPosVertice(2) - 1);
+
+                if (cbBackCull.CheckState == CheckState.Checked)
+                {
+                    if (f.getVisivel(objeto.Vertices))
+                    {
+                        Bresenham((int)((v1.Z + dx) * rx - 50), (int)((v2.Z + dx) * rx - 50), (int)((v1.Y + dy) * ry - 80), (int)((v2.Y + dy) * ry - 80), bmpyz, pbPYZ);
+                        Bresenham((int)((v2.Z + dx) * rx - 50), (int)((v3.Z + dx) * rx - 50), (int)((v2.Y + dy) * ry - 80), (int)((v3.Y + dy) * ry - 80), bmpyz, pbPYZ);
+                        Bresenham((int)((v3.Z + dx) * rx - 50), (int)((v1.Z + dx) * rx - 50), (int)((v3.Y + dy) * ry - 80), (int)((v1.Y + dy) * ry - 80), bmpyz, pbPYZ);
+                    }
+                }
+                else
+                {
+                    Bresenham((int)((v1.Z + dx) * rx - 50), (int)((v2.Z + dx) * rx - 50), (int)((v1.Y + dy) * ry - 80), (int)((v2.Y + dy) * ry - 80), bmpyz, pbPYZ);
+                    Bresenham((int)((v2.Z + dx) * rx - 50), (int)((v3.Z + dx) * rx - 50), (int)((v2.Y + dy) * ry - 80), (int)((v3.Y + dy) * ry - 80), bmpyz, pbPYZ);
+                    Bresenham((int)((v3.Z + dx) * rx - 50), (int)((v1.Z + dx) * rx - 50), (int)((v3.Y + dy) * ry - 80), (int)((v1.Y + dy) * ry - 80), bmpyz, pbPYZ);
+                }
+
+            });
+            pbPYZ.Refresh();
+        }
+
+        private void desenha_xz()
+        {
+            pbPXZ.Image = null;
+
+            bmpxz.Dispose();
+            bmpxz = new DirectBitmap(pbPXZ.Width, pbPXZ.Height);
+
+            pbPXZ.Image = bmpxz.Bitmap;
+
+            double rx = pbPXZ.Width / pictureBox1.Width + 0.5;
+            double ry = pbPXZ.Height / pictureBox1.Height + 0.5;
+
+            //Console.WriteLine(rx);
+
+            Parallel.For(0, objeto.Faces.Count, i =>
+            {
+                Face f = objeto.Faces[i];
+                Vertice v1 = objeto.Vertices.ElementAt(f.getPosVertice(0) - 1);
+                Vertice v2 = objeto.Vertices.ElementAt(f.getPosVertice(1) - 1);
+                Vertice v3 = objeto.Vertices.ElementAt(f.getPosVertice(2) - 1);
+
+                if (cbBackCull.CheckState == CheckState.Checked)
+                {
+                    if (f.getVisivel(objeto.Vertices))
+                    {
+                        Bresenham((int)((v1.X + dx) * rx - 50), (int)((v2.X + dx) * rx - 50), (int)((v1.Z + dy) * ry - 80), (int)((v2.Z + dy) * ry - 80), bmpxz, pbPXZ);
+                        Bresenham((int)((v2.X + dx) * rx - 50), (int)((v3.X + dx) * rx - 50), (int)((v2.Z + dy) * ry - 80), (int)((v3.Z + dy) * ry - 80), bmpxz, pbPXZ);
+                        Bresenham((int)((v3.X + dx) * rx - 50), (int)((v1.X + dx) * rx - 50), (int)((v3.Z + dy) * ry - 80), (int)((v1.Z + dy) * ry - 80), bmpxz, pbPXZ);
+                    }
+                }
+                else
+                {
+                    Bresenham((int)((v1.X + dx) * rx - 50), (int)((v2.X + dx) * rx - 50), (int)((v1.Z + dy) * ry - 80), (int)((v2.Z + dy) * ry - 80), bmpxz, pbPXZ);
+                    Bresenham((int)((v2.X + dx) * rx - 50), (int)((v3.X + dx) * rx - 50), (int)((v2.Z + dy) * ry - 80), (int)((v3.Z + dy) * ry - 80), bmpxz, pbPXZ);
+                    Bresenham((int)((v3.X + dx) * rx - 50), (int)((v1.X + dx) * rx - 50), (int)((v3.Z + dy) * ry - 80), (int)((v1.Z + dy) * ry - 80), bmpxz, pbPXZ);
+                }
+
+            });
+            pbPXZ.Refresh();
         }
 
         private bool isOnPictureBox(int x, int y, PictureBox pb)
@@ -264,7 +403,7 @@ namespace CG_Elementos_3D
             pictureBox1.Image = bmp.Bitmap;
         }
 
-        public void Bresenham(int x1, int x2, int y1, int y2, DirectBitmap bmp) /// FUNCIONA
+        public void Bresenham(int x1, int x2, int y1, int y2, DirectBitmap bmp, PictureBox pb) /// FUNCIONA
         {
             int dx, dy, incE, incNE, declive, d, x, y;
 
@@ -277,7 +416,7 @@ namespace CG_Elementos_3D
                 if (x1 > x2)
                 {
                     // INVERTE OS PONTOS E REFAZ AS PERGUNTAS
-                    Bresenham(x2, x1, y2, y1, bmp);
+                    Bresenham(x2, x1, y2, y1, bmp, pb);
                 }
                 else
                 {
@@ -296,7 +435,7 @@ namespace CG_Elementos_3D
 
                     for (x = (int)x1; x <= x2; x++)
                     {
-                        if (isOnPictureBox(x, y, pictureBox1))
+                        if (isOnPictureBox(x, y, pb))
                             bmp.SetPixel(x, y, Color.White);
 
                         if (d < 0)
@@ -313,7 +452,7 @@ namespace CG_Elementos_3D
             {
                 if (y1 > y2)
                 {
-                    Bresenham(x2, x1, y2, y1, bmp);
+                    Bresenham(x2, x1, y2, y1, bmp, pb);
                 }
                 else
                 {
@@ -330,7 +469,7 @@ namespace CG_Elementos_3D
                     x = (int)x1;
                     for (y = (int)y1; y <= y2; ++y)
                     {
-                        if (isOnPictureBox(x, y, pictureBox1))
+                        if (isOnPictureBox(x, y, pb))
                             bmp.SetPixel(x, y, Color.White);
                         if (d < 0) // escolhe incE
                             d += incE;
