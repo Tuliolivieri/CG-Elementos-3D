@@ -46,11 +46,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cdCorFundo = new System.Windows.Forms.ColorDialog();
+            this.cdCorObj = new System.Windows.Forms.ColorDialog();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btCorFundo = new System.Windows.Forms.Button();
+            this.btCorObj = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPXY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPYZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPXZ)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btAbrir
@@ -61,7 +71,7 @@
             this.btAbrir.ForeColor = System.Drawing.Color.White;
             this.btAbrir.Location = new System.Drawing.Point(13, 13);
             this.btAbrir.Name = "btAbrir";
-            this.btAbrir.Size = new System.Drawing.Size(119, 39);
+            this.btAbrir.Size = new System.Drawing.Size(291, 39);
             this.btAbrir.TabIndex = 0;
             this.btAbrir.Text = "Abrir Arquivo";
             this.btAbrir.UseVisualStyleBackColor = false;
@@ -71,7 +81,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Black;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(13, 58);
+            this.pictureBox1.Location = new System.Drawing.Point(310, 59);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(988, 699);
             this.pictureBox1.TabIndex = 1;
@@ -89,7 +99,7 @@
             this.lbTitle.AutoSize = true;
             this.lbTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTitle.ForeColor = System.Drawing.Color.White;
-            this.lbTitle.Location = new System.Drawing.Point(10, 760);
+            this.lbTitle.Location = new System.Drawing.Point(310, 761);
             this.lbTitle.Name = "lbTitle";
             this.lbTitle.Size = new System.Drawing.Size(169, 17);
             this.lbTitle.TabIndex = 2;
@@ -154,9 +164,9 @@
             // 
             this.groupBox.Controls.Add(this.cbBackCull);
             this.groupBox.ForeColor = System.Drawing.Color.White;
-            this.groupBox.Location = new System.Drawing.Point(139, 13);
+            this.groupBox.Location = new System.Drawing.Point(3, 4);
             this.groupBox.Name = "groupBox";
-            this.groupBox.Size = new System.Drawing.Size(200, 39);
+            this.groupBox.Size = new System.Drawing.Size(283, 39);
             this.groupBox.TabIndex = 8;
             this.groupBox.TabStop = false;
             this.groupBox.Text = "Funções";
@@ -170,13 +180,14 @@
             this.cbBackCull.TabIndex = 0;
             this.cbBackCull.Text = "Backface Culling";
             this.cbBackCull.UseVisualStyleBackColor = true;
+            this.cbBackCull.CheckedChanged += new System.EventHandler(this.CbBackCull_CheckedChanged);
             // 
             // pbPXY
             // 
             this.pbPXY.AccessibleName = "";
             this.pbPXY.BackColor = System.Drawing.Color.Black;
             this.pbPXY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbPXY.Location = new System.Drawing.Point(1007, 81);
+            this.pbPXY.Location = new System.Drawing.Point(1307, 81);
             this.pbPXY.Name = "pbPXY";
             this.pbPXY.Size = new System.Drawing.Size(414, 200);
             this.pbPXY.TabIndex = 9;
@@ -187,7 +198,7 @@
             this.pbPYZ.AccessibleName = "";
             this.pbPYZ.BackColor = System.Drawing.Color.Black;
             this.pbPYZ.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbPYZ.Location = new System.Drawing.Point(1007, 320);
+            this.pbPYZ.Location = new System.Drawing.Point(1307, 320);
             this.pbPYZ.Name = "pbPYZ";
             this.pbPYZ.Size = new System.Drawing.Size(414, 200);
             this.pbPYZ.TabIndex = 10;
@@ -198,7 +209,7 @@
             this.pbPXZ.AccessibleName = "";
             this.pbPXZ.BackColor = System.Drawing.Color.Black;
             this.pbPXZ.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbPXZ.Location = new System.Drawing.Point(1008, 557);
+            this.pbPXZ.Location = new System.Drawing.Point(1308, 557);
             this.pbPXZ.Name = "pbPXZ";
             this.pbPXZ.Size = new System.Drawing.Size(414, 200);
             this.pbPXZ.TabIndex = 11;
@@ -210,7 +221,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(1004, 534);
+            this.label1.Location = new System.Drawing.Point(1304, 534);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(104, 20);
             this.label1.TabIndex = 12;
@@ -221,7 +232,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(1003, 297);
+            this.label2.Location = new System.Drawing.Point(1303, 297);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 20);
             this.label2.TabIndex = 13;
@@ -232,25 +243,92 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(1003, 58);
+            this.label3.Location = new System.Drawing.Point(1303, 58);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(105, 20);
             this.label3.TabIndex = 14;
             this.label3.Text = "Projeção X, Y";
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.groupBox);
+            this.panel1.Location = new System.Drawing.Point(13, 58);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(291, 699);
+            this.panel1.TabIndex = 15;
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btCorObj);
+            this.panel2.Controls.Add(this.btCorFundo);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Location = new System.Drawing.Point(3, 49);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(283, 118);
+            this.panel2.TabIndex = 9;
+            this.panel2.Tag = "";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(3, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(90, 17);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Cor de fundo";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(99, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(96, 17);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Cor do Objeto";
+            // 
+            // btCorFundo
+            // 
+            this.btCorFundo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btCorFundo.Image = global::CG_Elementos_3D.Properties.Resources.cpick;
+            this.btCorFundo.Location = new System.Drawing.Point(6, 16);
+            this.btCorFundo.Name = "btCorFundo";
+            this.btCorFundo.Size = new System.Drawing.Size(85, 85);
+            this.btCorFundo.TabIndex = 2;
+            this.btCorFundo.UseVisualStyleBackColor = true;
+            this.btCorFundo.Click += new System.EventHandler(this.BtCorFundo_Click);
+            // 
+            // btCorObj
+            // 
+            this.btCorObj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btCorObj.Image = global::CG_Elementos_3D.Properties.Resources.cpick;
+            this.btCorObj.Location = new System.Drawing.Point(102, 16);
+            this.btCorObj.Name = "btCorObj";
+            this.btCorObj.Size = new System.Drawing.Size(85, 85);
+            this.btCorObj.TabIndex = 3;
+            this.btCorObj.UseVisualStyleBackColor = true;
+            this.btCorObj.Click += new System.EventHandler(this.BtCorObj_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1434, 787);
+            this.ClientSize = new System.Drawing.Size(1736, 787);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pbPXZ);
             this.Controls.Add(this.pbPYZ);
             this.Controls.Add(this.pbPXY);
-            this.Controls.Add(this.groupBox);
             this.Controls.Add(this.lbTY);
             this.Controls.Add(this.lbTX);
             this.Controls.Add(this.lbRotacao);
@@ -268,6 +346,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbPXY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPYZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPXZ)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,6 +373,14 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ColorDialog cdCorFundo;
+        private System.Windows.Forms.ColorDialog cdCorObj;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btCorObj;
+        private System.Windows.Forms.Button btCorFundo;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
     }
 }
 

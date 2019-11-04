@@ -24,6 +24,9 @@ namespace CG_Elementos_3D
         DirectBitmap bmpyz;
         DirectBitmap bmpxz;
 
+        Color cor_fundo;
+        Color cor_obj;
+
         public Form1()
         {
             InitializeComponent();
@@ -54,6 +57,14 @@ namespace CG_Elementos_3D
 
             bmpxz = new DirectBitmap(pbPXZ.Width, pbPXZ.Height);
             pbPXZ.Image = bmpxz.Bitmap;
+
+            cor_fundo = Color.Black;
+            cor_obj = Color.White;
+
+            pictureBox1.BackColor = cor_fundo;
+            pbPYZ.BackColor = cor_fundo;
+            pbPXZ.BackColor = cor_fundo;
+            pbPXY.BackColor = cor_fundo;
 
             apagaPictureBox();
         }
@@ -161,6 +172,33 @@ namespace CG_Elementos_3D
             yini = e.Y;
         }
 
+        private void BtCorFundo_Click(object sender, EventArgs e)
+        {
+            if(cdCorFundo.ShowDialog() == DialogResult.OK)
+            {
+                cor_fundo = cdCorFundo.Color;
+                pictureBox1.BackColor = cor_fundo;
+                pbPYZ.BackColor = cor_fundo;
+                pbPXZ.BackColor = cor_fundo;
+                pbPXY.BackColor = cor_fundo;
+            }
+
+        }
+
+        private void BtCorObj_Click(object sender, EventArgs e)
+        {
+            if(cdCorObj.ShowDialog() == DialogResult.OK)
+            {
+                cor_obj = cdCorObj.Color;
+                desenha();
+            }
+        }
+
+        private void CbBackCull_CheckedChanged(object sender, EventArgs e)
+        {
+            desenha();
+        }
+
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             if(objeto != null && e.Button == MouseButtons.Right)
@@ -234,35 +272,38 @@ namespace CG_Elementos_3D
             //pictureBox1.Image = (Image)bmp.Bitmap;
         
             //foreach (Face f in objeto.Faces)
-            Parallel.For(0, objeto.Faces.Count, i =>
-            {
-                Face f = objeto.Faces[i];
-                Vertice v1 = objeto.Vertices.ElementAt(f.getPosVertice(0) - 1);
-                Vertice v2 = objeto.Vertices.ElementAt(f.getPosVertice(1) - 1);
-                Vertice v3 = objeto.Vertices.ElementAt(f.getPosVertice(2) - 1);
-
-                if(cbBackCull.CheckState == CheckState.Checked)
+            if(objeto != null)
+            { 
+                Parallel.For(0, objeto.Faces.Count, i => 
                 {
-                    if(f.getVisivel(objeto.Vertices))
+                    Face f = objeto.Faces[i];
+                    Vertice v1 = objeto.Vertices.ElementAt(f.getPosVertice(0) - 1);
+                    Vertice v2 = objeto.Vertices.ElementAt(f.getPosVertice(1) - 1);
+                    Vertice v3 = objeto.Vertices.ElementAt(f.getPosVertice(2) - 1);
+
+                    if(cbBackCull.CheckState == CheckState.Checked)
+                    {
+                        if(f.getVisivel(objeto.Vertices))
+                        {
+                            Bresenham((int)v1.X + dx, (int)v2.X + dx, (int)v1.Y + dy, (int)v2.Y + dy, bmp, pictureBox1);
+                            Bresenham((int)v2.X + dx, (int)v3.X + dx, (int)v2.Y + dy, (int)v3.Y + dy, bmp, pictureBox1);
+                            Bresenham((int)v3.X + dx, (int)v1.X + dx, (int)v3.Y + dy, (int)v1.Y + dy, bmp, pictureBox1);
+                        }
+                    }
+                    else
                     {
                         Bresenham((int)v1.X + dx, (int)v2.X + dx, (int)v1.Y + dy, (int)v2.Y + dy, bmp, pictureBox1);
                         Bresenham((int)v2.X + dx, (int)v3.X + dx, (int)v2.Y + dy, (int)v3.Y + dy, bmp, pictureBox1);
                         Bresenham((int)v3.X + dx, (int)v1.X + dx, (int)v3.Y + dy, (int)v1.Y + dy, bmp, pictureBox1);
                     }
-                }
-                else
-                {
-                    Bresenham((int)v1.X + dx, (int)v2.X + dx, (int)v1.Y + dy, (int)v2.Y + dy, bmp, pictureBox1);
-                    Bresenham((int)v2.X + dx, (int)v3.X + dx, (int)v2.Y + dy, (int)v3.Y + dy, bmp, pictureBox1);
-                    Bresenham((int)v3.X + dx, (int)v1.X + dx, (int)v3.Y + dy, (int)v1.Y + dy, bmp, pictureBox1);
-                }
                     
-            });
-            pictureBox1.Refresh();
+                });
+                pictureBox1.Refresh();
 
-            desenha_xy();
-            desenha_yz();
-            desenha_xz();
+                desenha_xy();
+                desenha_yz();
+                desenha_xz();
+            }
         }
 
         private void desenha_xy()
@@ -436,7 +477,7 @@ namespace CG_Elementos_3D
                     for (x = (int)x1; x <= x2; x++)
                     {
                         if (isOnPictureBox(x, y, pb))
-                            bmp.SetPixel(x, y, Color.White);
+                            bmp.SetPixel(x, y, cor_obj);
 
                         if (d < 0)
                             d += incE;
@@ -470,7 +511,7 @@ namespace CG_Elementos_3D
                     for (y = (int)y1; y <= y2; ++y)
                     {
                         if (isOnPictureBox(x, y, pb))
-                            bmp.SetPixel(x, y, Color.White);
+                            bmp.SetPixel(x, y, cor_obj);
                         if (d < 0) // escolhe incE
                             d += incE;
                         else
