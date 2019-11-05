@@ -43,17 +43,20 @@
             this.pbPXY = new System.Windows.Forms.PictureBox();
             this.pbPYZ = new System.Windows.Forms.PictureBox();
             this.pbPXZ = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbP3 = new System.Windows.Forms.Label();
+            this.lbP2 = new System.Windows.Forms.Label();
+            this.lbP1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btCorObj = new System.Windows.Forms.Button();
+            this.btCorFundo = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.cdCorFundo = new System.Windows.Forms.ColorDialog();
             this.cdCorObj = new System.Windows.Forms.ColorDialog();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.btCorFundo = new System.Windows.Forms.Button();
-            this.btCorObj = new System.Windows.Forms.Button();
+            this.gbProjecoes = new System.Windows.Forms.GroupBox();
+            this.cbParaOrt = new System.Windows.Forms.CheckBox();
+            this.cbParaObli = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPXY)).BeginInit();
@@ -61,6 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbPXZ)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.gbProjecoes.SuspendLayout();
             this.SuspendLayout();
             // 
             // btAbrir
@@ -215,39 +219,39 @@
             this.pbPXZ.TabIndex = 11;
             this.pbPXZ.TabStop = false;
             // 
-            // label1
+            // lbP3
             // 
-            this.label1.AccessibleName = "pbPXY";
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(1304, 534);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 20);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Projeção X, Z";
+            this.lbP3.AccessibleName = "";
+            this.lbP3.AutoSize = true;
+            this.lbP3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbP3.ForeColor = System.Drawing.Color.White;
+            this.lbP3.Location = new System.Drawing.Point(1304, 534);
+            this.lbP3.Name = "lbP3";
+            this.lbP3.Size = new System.Drawing.Size(104, 20);
+            this.lbP3.TabIndex = 12;
+            this.lbP3.Text = "Projeção X, Z";
             // 
-            // label2
+            // lbP2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(1303, 297);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 20);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Projeção Y, Z";
+            this.lbP2.AutoSize = true;
+            this.lbP2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbP2.ForeColor = System.Drawing.Color.White;
+            this.lbP2.Location = new System.Drawing.Point(1303, 297);
+            this.lbP2.Name = "lbP2";
+            this.lbP2.Size = new System.Drawing.Size(104, 20);
+            this.lbP2.TabIndex = 13;
+            this.lbP2.Text = "Projeção Y, Z";
             // 
-            // label3
+            // lbP1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(1303, 58);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(105, 20);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Projeção X, Y";
+            this.lbP1.AutoSize = true;
+            this.lbP1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbP1.ForeColor = System.Drawing.Color.White;
+            this.lbP1.Location = new System.Drawing.Point(1303, 58);
+            this.lbP1.Name = "lbP1";
+            this.lbP1.Size = new System.Drawing.Size(105, 20);
+            this.lbP1.TabIndex = 14;
+            this.lbP1.Text = "Projeção X, Y";
             // 
             // panel1
             // 
@@ -272,27 +276,16 @@
             this.panel2.TabIndex = 9;
             this.panel2.Tag = "";
             // 
-            // label4
+            // btCorObj
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(3, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(90, 17);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Cor de fundo";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(99, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 17);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Cor do Objeto";
+            this.btCorObj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btCorObj.Image = global::CG_Elementos_3D.Properties.Resources.cpick;
+            this.btCorObj.Location = new System.Drawing.Point(102, 16);
+            this.btCorObj.Name = "btCorObj";
+            this.btCorObj.Size = new System.Drawing.Size(85, 85);
+            this.btCorObj.TabIndex = 3;
+            this.btCorObj.UseVisualStyleBackColor = true;
+            this.btCorObj.Click += new System.EventHandler(this.BtCorObj_Click);
             // 
             // btCorFundo
             // 
@@ -305,16 +298,61 @@
             this.btCorFundo.UseVisualStyleBackColor = true;
             this.btCorFundo.Click += new System.EventHandler(this.BtCorFundo_Click);
             // 
-            // btCorObj
+            // label5
             // 
-            this.btCorObj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btCorObj.Image = global::CG_Elementos_3D.Properties.Resources.cpick;
-            this.btCorObj.Location = new System.Drawing.Point(102, 16);
-            this.btCorObj.Name = "btCorObj";
-            this.btCorObj.Size = new System.Drawing.Size(85, 85);
-            this.btCorObj.TabIndex = 3;
-            this.btCorObj.UseVisualStyleBackColor = true;
-            this.btCorObj.Click += new System.EventHandler(this.BtCorObj_Click);
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(99, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(96, 17);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Cor do Objeto";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(3, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(90, 17);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Cor de fundo";
+            // 
+            // gbProjecoes
+            // 
+            this.gbProjecoes.Controls.Add(this.cbParaObli);
+            this.gbProjecoes.Controls.Add(this.cbParaOrt);
+            this.gbProjecoes.ForeColor = System.Drawing.Color.White;
+            this.gbProjecoes.Location = new System.Drawing.Point(1307, 13);
+            this.gbProjecoes.Name = "gbProjecoes";
+            this.gbProjecoes.Size = new System.Drawing.Size(414, 39);
+            this.gbProjecoes.TabIndex = 16;
+            this.gbProjecoes.TabStop = false;
+            this.gbProjecoes.Text = "Projeções";
+            // 
+            // cbParaOrt
+            // 
+            this.cbParaOrt.AutoSize = true;
+            this.cbParaOrt.Location = new System.Drawing.Point(71, 13);
+            this.cbParaOrt.Name = "cbParaOrt";
+            this.cbParaOrt.Size = new System.Drawing.Size(119, 17);
+            this.cbParaOrt.TabIndex = 0;
+            this.cbParaOrt.Text = "Paralela Ortográfica";
+            this.cbParaOrt.UseVisualStyleBackColor = true;
+            this.cbParaOrt.CheckedChanged += new System.EventHandler(this.cbParaOrt_CheckedChanged);
+            // 
+            // cbParaObli
+            // 
+            this.cbParaObli.AutoSize = true;
+            this.cbParaObli.Location = new System.Drawing.Point(196, 13);
+            this.cbParaObli.Name = "cbParaObli";
+            this.cbParaObli.Size = new System.Drawing.Size(107, 17);
+            this.cbParaObli.TabIndex = 1;
+            this.cbParaObli.Text = "Paralela Oblíquia";
+            this.cbParaObli.UseVisualStyleBackColor = true;
+            this.cbParaObli.CheckedChanged += new System.EventHandler(this.cbParaObli_CheckedChanged);
             // 
             // Form1
             // 
@@ -322,10 +360,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1736, 787);
+            this.Controls.Add(this.gbProjecoes);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbP1);
+            this.Controls.Add(this.lbP2);
+            this.Controls.Add(this.lbP3);
             this.Controls.Add(this.pbPXZ);
             this.Controls.Add(this.pbPYZ);
             this.Controls.Add(this.pbPXY);
@@ -349,6 +388,8 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.gbProjecoes.ResumeLayout(false);
+            this.gbProjecoes.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -370,9 +411,9 @@
         private System.Windows.Forms.PictureBox pbPXY;
         private System.Windows.Forms.PictureBox pbPYZ;
         private System.Windows.Forms.PictureBox pbPXZ;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbP3;
+        private System.Windows.Forms.Label lbP2;
+        private System.Windows.Forms.Label lbP1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ColorDialog cdCorFundo;
         private System.Windows.Forms.ColorDialog cdCorObj;
@@ -381,6 +422,9 @@
         private System.Windows.Forms.Button btCorFundo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox gbProjecoes;
+        private System.Windows.Forms.CheckBox cbParaObli;
+        private System.Windows.Forms.CheckBox cbParaOrt;
     }
 }
 
