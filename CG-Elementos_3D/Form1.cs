@@ -66,6 +66,12 @@ namespace CG_Elementos_3D
             pbPXZ.BackColor = cor_fundo;
             pbPXY.BackColor = cor_fundo;
 
+            cbParaOrt.Checked = true;
+
+            lbP1.Text = "X, Y";
+            lbP2.Text = "Y, Z";
+            lbP3.Text = "X, Z";
+
             apagaPictureBox();
         }
 
@@ -202,17 +208,43 @@ namespace CG_Elementos_3D
         private void cbParaOrt_CheckedChanged(object sender, EventArgs e)
         {
             if (cbParaOrt.CheckState == CheckState.Checked)
+            {
                 cbParaObli.CheckState = CheckState.Unchecked;
+
+                lbP1.Text = "X, Y";
+                lbP2.Text = "Y, Z";
+                lbP3.Text = "X, Z";
+            }
             else
+            {
                 cbParaObli.CheckState = CheckState.Checked;
+
+                lbP1.Text = "Cavaleira";
+                lbP2.Text = "Cabinet";
+                lbP3.Text = "-";
+            }
+            desenha();
         }
 
         private void cbParaObli_CheckedChanged(object sender, EventArgs e)
         {
             if (cbParaObli.CheckState == CheckState.Checked)
+            {
                 cbParaOrt.CheckState = CheckState.Unchecked;
+
+                lbP1.Text = "Cavaleira";
+                lbP2.Text = "Cabinet";
+                lbP3.Text = "-";
+            }
             else
+            {
                 cbParaOrt.CheckState = CheckState.Checked;
+
+                lbP1.Text = "X, Y";
+                lbP2.Text = "Y, Z";
+                lbP3.Text = "X, Z";
+            }
+            desenha();
         }
 
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
@@ -253,7 +285,7 @@ namespace CG_Elementos_3D
 
                         splitada = linha.Split(' ');
 
-                        Vertice v = new Vertice((int)double.Parse(splitada[0]), (int)double.Parse(splitada[1]), (int)double.Parse(splitada[2]));
+                        Vertice v = new Vertice(double.Parse(splitada[0]), double.Parse(splitada[1]), double.Parse(splitada[2]));
 
                         objeto.addVertice(v);
                     }
@@ -325,6 +357,7 @@ namespace CG_Elementos_3D
                 else if(cbParaObli.Checked)
                 {
                     desenha_cavaleira();
+                    desenha_cabintet();
                 }
             }
         }
@@ -335,7 +368,7 @@ namespace CG_Elementos_3D
             Console.WriteLine("DESENHA XY");
             bmpxy.Dispose();
             bmpxy = new DirectBitmap(pbPXY.Width, pbPXY.Height);
-
+            
             pbPXY.Image = bmpxy.Bitmap;
 
             double rx = pbPXY.Width / pictureBox1.Width + 0.5;
@@ -393,7 +426,7 @@ namespace CG_Elementos_3D
 
                 if (cbBackCull.CheckState == CheckState.Checked)
                 {
-                    if (f.getVisivel(objeto.Vertices))
+                    if (f.getVisivelX(objeto.Vertices))
                     {
                         Bresenham((int)((v1.Z + dx) * rx - 50), (int)((v2.Z + dx) * rx - 50), (int)((v1.Y + dy) * ry - 80), (int)((v2.Y + dy) * ry - 80), bmpyz, pbPYZ);
                         Bresenham((int)((v2.Z + dx) * rx - 50), (int)((v3.Z + dx) * rx - 50), (int)((v2.Y + dy) * ry - 80), (int)((v3.Y + dy) * ry - 80), bmpyz, pbPYZ);
@@ -434,7 +467,7 @@ namespace CG_Elementos_3D
 
                 if (cbBackCull.CheckState == CheckState.Checked)
                 {
-                    if (f.getVisivel(objeto.Vertices))
+                    if (f.getVisivelY(objeto.Vertices))
                     {
                         Bresenham((int)((v1.X + dx) * rx - 50), (int)((v2.X + dx) * rx - 50), (int)((v1.Z + dy) * ry - 80), (int)((v2.Z + dy) * ry - 80), bmpxz, pbPXZ);
                         Bresenham((int)((v2.X + dx) * rx - 50), (int)((v3.X + dx) * rx - 50), (int)((v2.Z + dy) * ry - 80), (int)((v3.Z + dy) * ry - 80), bmpxz, pbPXZ);
@@ -464,19 +497,20 @@ namespace CG_Elementos_3D
             double x1, x2, x3, y1, y2, y3;
 
 
-            Parallel.For(0, objeto.Faces.Count, i =>
+            //Parallel.For(0, objeto.Faces.Count, i =>
+            for(int i = 0; i < objeto.Faces.Count; i++)
             {
                 Face f = objeto.Faces[i];
                 Vertice v1 = objeto.Vertices.ElementAt(f.getPosVertice(0) - 1);
                 Vertice v2 = objeto.Vertices.ElementAt(f.getPosVertice(1) - 1);
                 Vertice v3 = objeto.Vertices.ElementAt(f.getPosVertice(2) - 1);
 
-                x1 = v1.X + v1.Z * (Math.Cos(45 * Math.PI / 180));
-                y1 = v1.Y + v1.Z * (Math.Sin(45 * Math.PI / 180));
-                x2 = v2.X + v2.Z * (Math.Cos(45 * Math.PI / 180));
-                y2 = v2.Y + v2.Z * (Math.Sin(45 * Math.PI / 180));
-                x3 = v3.X + v3.Z * (Math.Cos(45 * Math.PI / 180));
-                y3 = v3.Y + v3.Z * (Math.Sin(45 * Math.PI / 180));
+                x1 = Math.Round(v1.X + v1.Z * (Math.Cos(45)));
+                y1 = Math.Round(v1.Y + v1.Z * (Math.Sin(45)));
+                x2 = Math.Round(v2.X + v2.Z * (Math.Cos(45)));
+                y2 = Math.Round(v2.Y + v2.Z * (Math.Sin(45)));
+                x3 = Math.Round(v3.X + v3.Z * (Math.Cos(45)));
+                y3 = Math.Round(v3.Y + v3.Z * (Math.Sin(45)));
 
                 if (cbBackCull.CheckState == CheckState.Checked)
                 {
@@ -494,9 +528,57 @@ namespace CG_Elementos_3D
                     Bresenham((int)x3, (int)x1, (int)y3, (int)y1, bmpxy, pbPXY);
                 }
 
-            });
+            }//);
 
             pbPXY.Refresh();
+        }
+
+        private void desenha_cabintet()
+        {
+            pbPYZ.Image = null;
+
+            bmpyz.Dispose();
+            bmpyz = new DirectBitmap(pbPYZ.Width, pbPYZ.Height);
+
+            pbPYZ.Image = bmpyz.Bitmap;
+
+            double x1, x2, x3, y1, y2, y3;
+
+
+            //Parallel.For(0, objeto.Faces.Count, i =>
+            for (int i = 0; i < objeto.Faces.Count; i++)
+            {
+                Face f = objeto.Faces[i];
+                Vertice v1 = objeto.Vertices.ElementAt(f.getPosVertice(0) - 1);
+                Vertice v2 = objeto.Vertices.ElementAt(f.getPosVertice(1) - 1);
+                Vertice v3 = objeto.Vertices.ElementAt(f.getPosVertice(2) - 1);
+
+                x1 = Math.Round(v1.X + v1.Z * 0.5 * (Math.Cos(45)));
+                y1 = Math.Round(v1.Y + v1.Z * 0.5 * (Math.Sin(45)));
+                x2 = Math.Round(v2.X + v2.Z * 0.5 * (Math.Cos(45)));
+                y2 = Math.Round(v2.Y + v2.Z * 0.5 * (Math.Sin(45)));
+                x3 = Math.Round(v3.X + v3.Z * 0.5 * (Math.Cos(45)));
+                y3 = Math.Round(v3.Y + v3.Z * 0.5 * (Math.Sin(45)));
+
+                if (cbBackCull.CheckState == CheckState.Checked)
+                {
+                    if (f.getVisivel(objeto.Vertices))
+                    {
+                        Bresenham((int)x1, (int)x2, (int)y1, (int)y2, bmpyz, pbPYZ);
+                        Bresenham((int)x2, (int)x3, (int)y2, (int)y3, bmpyz, pbPYZ);
+                        Bresenham((int)x3, (int)x1, (int)y3, (int)y1, bmpyz, pbPYZ);
+                    }
+                }
+                else
+                {
+                    Bresenham((int)x1, (int)x2, (int)y1, (int)y2, bmpyz, pbPYZ);
+                    Bresenham((int)x2, (int)x3, (int)y2, (int)y3, bmpyz, pbPYZ);
+                    Bresenham((int)x3, (int)x1, (int)y3, (int)y1, bmpyz, pbPYZ);
+                }
+
+            }//);
+
+            pbPYZ.Refresh();
         }
 
         private bool isOnPictureBox(int x, int y, PictureBox pb)

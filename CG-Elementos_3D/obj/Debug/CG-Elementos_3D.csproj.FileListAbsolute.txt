@@ -27,3 +27,13 @@ D:\Faculdade\CG\CG-Elementos_3D_M4\CG-Elementos_3D\obj\Debug\CG-Elementos_3D.csp
 D:\Faculdade\CG\CG-Elementos_3D_M4\CG-Elementos_3D\obj\Debug\CG-Elementos_3D.csproj.CoreCompileInputs.cache
 D:\Faculdade\CG\CG-Elementos_3D_M4\CG-Elementos_3D\obj\Debug\CG-Elementos_3D.exe
 D:\Faculdade\CG\CG-Elementos_3D_M4\CG-Elementos_3D\obj\Debug\CG-Elementos_3D.pdb
+F:\CG\CG-Elementos_3D\CG-Elementos_3D\bin\Debug\CG-Elementos_3D.exe.config
+F:\CG\CG-Elementos_3D\CG-Elementos_3D\bin\Debug\CG-Elementos_3D.exe
+F:\CG\CG-Elementos_3D\CG-Elementos_3D\bin\Debug\CG-Elementos_3D.pdb
+F:\CG\CG-Elementos_3D\CG-Elementos_3D\obj\Debug\CG-Elementos_3D.csprojAssemblyReference.cache
+F:\CG\CG-Elementos_3D\CG-Elementos_3D\obj\Debug\CG_Elementos_3D.Form1.resources
+F:\CG\CG-Elementos_3D\CG-Elementos_3D\obj\Debug\CG_Elementos_3D.Properties.Resources.resources
+F:\CG\CG-Elementos_3D\CG-Elementos_3D\obj\Debug\CG-Elementos_3D.csproj.GenerateResource.cache
+F:\CG\CG-Elementos_3D\CG-Elementos_3D\obj\Debug\CG-Elementos_3D.csproj.CoreCompileInputs.cache
+F:\CG\CG-Elementos_3D\CG-Elementos_3D\obj\Debug\CG-Elementos_3D.exe
+F:\CG\CG-Elementos_3D\CG-Elementos_3D\obj\Debug\CG-Elementos_3D.pdb
