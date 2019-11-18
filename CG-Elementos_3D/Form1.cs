@@ -221,7 +221,7 @@ namespace CG_Elementos_3D
 
                 lbP1.Text = "Cavaleira";
                 lbP2.Text = "Cabinet";
-                lbP3.Text = "-";
+                lbP3.Text = "1 Ponto de Fulga";
             }
             desenha();
         }
@@ -234,7 +234,7 @@ namespace CG_Elementos_3D
 
                 lbP1.Text = "Cavaleira";
                 lbP2.Text = "Cabinet";
-                lbP3.Text = "-";
+                lbP3.Text = "1 Ponto de Fulga";
             }
             else
             {
@@ -312,6 +312,19 @@ namespace CG_Elementos_3D
             desenha();
         }
 
+        private void btLuz_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(e.Button.Equals(MouseButtons.Right))
+            {
+                int x = e.X + btLuz.Location.X;
+                int y = e.Y + btLuz.Location.Y;
+
+                if (x > pictureBox1.Location.X && x < pictureBox1.Location.X + pictureBox1.Width - 42)
+                    if(y > pictureBox1.Location.Y && y < pictureBox1.Location.Y + pictureBox1.Height - 42)
+                        btLuz.SetBounds(x, y, 42, 42);
+            }
+        }
+
         private void desenha()
         {
             //pictureBox1.Image.Dispose();
@@ -358,6 +371,7 @@ namespace CG_Elementos_3D
                 {
                     desenha_cavaleira();
                     desenha_cabintet();
+                    desenha_1pf();
                 }
             }
         }
@@ -579,6 +593,57 @@ namespace CG_Elementos_3D
             }//);
 
             pbPYZ.Refresh();
+        }
+
+        private void desenha_1pf()
+        {
+            /*pbPXZ.Image = null;
+
+            bmpxz.Dispose();
+            bmpxz = new DirectBitmap(pbPXZ.Width, pbPXZ.Height);
+
+            pbPXZ.Image = bmpxz.Bitmap;
+
+            int d = 20;
+            double x1, x2, x3, y1, y2, y3;
+
+
+            for (int i = 0; i < objeto.Faces.Count; i++)
+            //Parallel.For(0, objeto.Faces.Count, i =>
+            {
+                Face f = objeto.Faces[i];
+                Vertice v1 = objeto.Vertices.ElementAt(f.getPosVertice(0) - 1);
+                Vertice v2 = objeto.Vertices.ElementAt(f.getPosVertice(1) - 1);
+                Vertice v3 = objeto.Vertices.ElementAt(f.getPosVertice(2) - 1);
+
+                double rx = pbPXY.Width / pictureBox1.Width + 0.5;
+                double ry = pbPXY.Height / pictureBox1.Height + 0.5;
+
+                x1 = v1.X * d / v1.Z * rx + 80;
+                y1 = v1.Y * d / v1.Z * ry + 50;
+                x2 = v2.X * d / v2.Z * rx + 80;
+                y2 = v2.Y * d / v2.Z * ry + 50;
+                x3 = v3.X * d / v3.Z * rx + 80;
+                y3 = v3.Y * d / v3.Z * ry + 50;
+
+                if (cbBackCull.CheckState == CheckState.Checked)
+                {
+                    if (f.getVisivel(objeto.Vertices))
+                    {
+                        Bresenham((int)x1, (int)x2, (int)y1, (int)y2, bmpxz, pbPXZ);
+                        Bresenham((int)x2, (int)x3, (int)y2, (int)y3, bmpxz, pbPXZ);
+                        Bresenham((int)x3, (int)x1, (int)y3, (int)y1, bmpxz, pbPXZ);
+                    }
+                }
+                else
+                {
+                    Bresenham((int)x1, (int)x2, (int)y1, (int)y2, bmpxz, pbPXZ);
+                    Bresenham((int)x2, (int)x3, (int)y2, (int)y3, bmpxz, pbPXZ);
+                    Bresenham((int)x3, (int)x1, (int)y3, (int)y1, bmpxz, pbPXZ);
+                }
+                Console.WriteLine("NA");
+            }
+            pbPXZ.Refresh();*/
         }
 
         private bool isOnPictureBox(int x, int y, PictureBox pb)

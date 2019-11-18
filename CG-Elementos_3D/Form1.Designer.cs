@@ -55,8 +55,9 @@
             this.cdCorFundo = new System.Windows.Forms.ColorDialog();
             this.cdCorObj = new System.Windows.Forms.ColorDialog();
             this.gbProjecoes = new System.Windows.Forms.GroupBox();
-            this.cbParaOrt = new System.Windows.Forms.CheckBox();
             this.cbParaObli = new System.Windows.Forms.CheckBox();
+            this.cbParaOrt = new System.Windows.Forms.CheckBox();
+            this.btLuz = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPXY)).BeginInit();
@@ -332,17 +333,6 @@
             this.gbProjecoes.TabStop = false;
             this.gbProjecoes.Text = "Projeções";
             // 
-            // cbParaOrt
-            // 
-            this.cbParaOrt.AutoSize = true;
-            this.cbParaOrt.Location = new System.Drawing.Point(71, 13);
-            this.cbParaOrt.Name = "cbParaOrt";
-            this.cbParaOrt.Size = new System.Drawing.Size(119, 17);
-            this.cbParaOrt.TabIndex = 0;
-            this.cbParaOrt.Text = "Paralela Ortográfica";
-            this.cbParaOrt.UseVisualStyleBackColor = true;
-            this.cbParaOrt.CheckedChanged += new System.EventHandler(this.cbParaOrt_CheckedChanged);
-            // 
             // cbParaObli
             // 
             this.cbParaObli.AutoSize = true;
@@ -354,12 +344,39 @@
             this.cbParaObli.UseVisualStyleBackColor = true;
             this.cbParaObli.CheckedChanged += new System.EventHandler(this.cbParaObli_CheckedChanged);
             // 
+            // cbParaOrt
+            // 
+            this.cbParaOrt.AutoSize = true;
+            this.cbParaOrt.Location = new System.Drawing.Point(71, 13);
+            this.cbParaOrt.Name = "cbParaOrt";
+            this.cbParaOrt.Size = new System.Drawing.Size(119, 17);
+            this.cbParaOrt.TabIndex = 0;
+            this.cbParaOrt.Text = "Paralela Ortográfica";
+            this.cbParaOrt.UseVisualStyleBackColor = true;
+            this.cbParaOrt.CheckedChanged += new System.EventHandler(this.cbParaOrt_CheckedChanged);
+            // 
+            // btLuz
+            // 
+            this.btLuz.BackColor = System.Drawing.Color.Black;
+            this.btLuz.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btLuz.BackgroundImage")));
+            this.btLuz.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btLuz.FlatAppearance.BorderSize = 0;
+            this.btLuz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btLuz.ForeColor = System.Drawing.Color.Transparent;
+            this.btLuz.Location = new System.Drawing.Point(316, 65);
+            this.btLuz.Name = "btLuz";
+            this.btLuz.Size = new System.Drawing.Size(42, 42);
+            this.btLuz.TabIndex = 17;
+            this.btLuz.UseVisualStyleBackColor = false;
+            this.btLuz.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btLuz_MouseMove);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1736, 787);
+            this.Controls.Add(this.btLuz);
             this.Controls.Add(this.gbProjecoes);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lbP1);
@@ -425,6 +442,7 @@
         private System.Windows.Forms.GroupBox gbProjecoes;
         private System.Windows.Forms.CheckBox cbParaObli;
         private System.Windows.Forms.CheckBox cbParaOrt;
+        private System.Windows.Forms.Button btLuz;
     }
 }
 
