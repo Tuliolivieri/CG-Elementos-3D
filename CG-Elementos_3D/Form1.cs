@@ -72,6 +72,8 @@ namespace CG_Elementos_3D
             lbP2.Text = "Y, Z";
             lbP3.Text = "X, Z";
 
+            cbWireFrame.CheckState = CheckState.Checked;
+
             apagaPictureBox();
         }
 
@@ -357,11 +359,18 @@ namespace CG_Elementos_3D
                         Bresenham((int)v2.X + dx, (int)v3.X + dx, (int)v2.Y + dy, (int)v3.Y + dy, bmp, pictureBox1);
                         Bresenham((int)v3.X + dx, (int)v1.X + dx, (int)v3.Y + dy, (int)v1.Y + dy, bmp, pictureBox1);
                     }
-                    
                 });
                 pictureBox1.Refresh();
 
-                if(cbParaOrt.Checked)
+                //if (cbFlat.Checked)
+                //{
+                //    foreach(Face f in objeto.Faces)
+                //    {
+                //        scanLine(f, objeto.Vertices);
+                //    }
+                //}
+
+                if (cbParaOrt.Checked)
                 {
                     desenha_xy();
                     desenha_yz();
@@ -510,9 +519,8 @@ namespace CG_Elementos_3D
 
             double x1, x2, x3, y1, y2, y3;
 
-
             //Parallel.For(0, objeto.Faces.Count, i =>
-            for(int i = 0; i < objeto.Faces.Count; i++)
+            for (int i = 0; i < objeto.Faces.Count; i++)
             {
                 Face f = objeto.Faces[i];
                 Vertice v1 = objeto.Vertices.ElementAt(f.getPosVertice(0) - 1);
@@ -530,16 +538,16 @@ namespace CG_Elementos_3D
                 {
                     if (f.getVisivel(objeto.Vertices))
                     {
-                        Bresenham((int)x1, (int)x2, (int)y1, (int)y2, bmpxy, pbPXY);
-                        Bresenham((int)x2, (int)x3, (int)y2, (int)y3, bmpxy, pbPXY);
-                        Bresenham((int)x3, (int)x1, (int)y3, (int)y1, bmpxy, pbPXY);
+                        Bresenham((int)x1 + 207, (int)x2 + 207, (int)y1 + 100, (int)y2 + 100, bmpxy, pbPXY);
+                        Bresenham((int)x2 + 207, (int)x3 + 207, (int)y2 + 100, (int)y3 + 100, bmpxy, pbPXY);
+                        Bresenham((int)x3 + 207, (int)x1 + 207, (int)y3 + 100, (int)y1 + 100, bmpxy, pbPXY);
                     }
                 }
                 else
                 {
-                    Bresenham((int)x1, (int)x2, (int)y1, (int)y2, bmpxy, pbPXY);
-                    Bresenham((int)x2, (int)x3, (int)y2, (int)y3, bmpxy, pbPXY);
-                    Bresenham((int)x3, (int)x1, (int)y3, (int)y1, bmpxy, pbPXY);
+                    Bresenham((int)x1 + 207, (int)x2 + 207, (int)y1 + 100, (int)y2 + 100, bmpxy, pbPXY);
+                    Bresenham((int)x2 + 207, (int)x3 + 207, (int)y2 + 100, (int)y3 + 100, bmpxy, pbPXY);
+                    Bresenham((int)x3 + 207, (int)x1 + 207, (int)y3 + 100, (int)y1 + 100, bmpxy, pbPXY);
                 }
 
             }//);
@@ -557,7 +565,6 @@ namespace CG_Elementos_3D
             pbPYZ.Image = bmpyz.Bitmap;
 
             double x1, x2, x3, y1, y2, y3;
-
 
             //Parallel.For(0, objeto.Faces.Count, i =>
             for (int i = 0; i < objeto.Faces.Count; i++)
@@ -578,16 +585,16 @@ namespace CG_Elementos_3D
                 {
                     if (f.getVisivel(objeto.Vertices))
                     {
-                        Bresenham((int)x1, (int)x2, (int)y1, (int)y2, bmpyz, pbPYZ);
-                        Bresenham((int)x2, (int)x3, (int)y2, (int)y3, bmpyz, pbPYZ);
-                        Bresenham((int)x3, (int)x1, (int)y3, (int)y1, bmpyz, pbPYZ);
+                        Bresenham((int)x1 + 207, (int)x2 + 207, (int)y1 + 100, (int)y2 + 100, bmpyz, pbPYZ);
+                        Bresenham((int)x2 + 207, (int)x3 + 207, (int)y2 + 100, (int)y3 + 100, bmpyz, pbPYZ);
+                        Bresenham((int)x3 + 207, (int)x1 + 207, (int)y3 + 100, (int)y1 + 100, bmpyz, pbPYZ);
                     }
                 }
                 else
                 {
-                    Bresenham((int)x1, (int)x2, (int)y1, (int)y2, bmpyz, pbPYZ);
-                    Bresenham((int)x2, (int)x3, (int)y2, (int)y3, bmpyz, pbPYZ);
-                    Bresenham((int)x3, (int)x1, (int)y3, (int)y1, bmpyz, pbPYZ);
+                    Bresenham((int)x1 + 207, (int)x2 + 207, (int)y1 + 100, (int)y2 + 100, bmpyz, pbPYZ);
+                    Bresenham((int)x2 + 207, (int)x3 + 207, (int)y2 + 100, (int)y3 + 100, bmpyz, pbPYZ);
+                    Bresenham((int)x3 + 207, (int)x1 + 207, (int)y3 + 100, (int)y1 + 100, bmpyz, pbPYZ);
                 }
 
             }//);
@@ -597,7 +604,7 @@ namespace CG_Elementos_3D
 
         private void desenha_1pf()
         {
-            /*pbPXZ.Image = null;
+            pbPXZ.Image = null;
 
             bmpxz.Dispose();
             bmpxz = new DirectBitmap(pbPXZ.Width, pbPXZ.Height);
@@ -609,7 +616,6 @@ namespace CG_Elementos_3D
 
 
             for (int i = 0; i < objeto.Faces.Count; i++)
-            //Parallel.For(0, objeto.Faces.Count, i =>
             {
                 Face f = objeto.Faces[i];
                 Vertice v1 = objeto.Vertices.ElementAt(f.getPosVertice(0) - 1);
@@ -620,13 +626,13 @@ namespace CG_Elementos_3D
                 double ry = pbPXY.Height / pictureBox1.Height + 0.5;
 
                 x1 = v1.X * d / v1.Z * rx + 80;
-                y1 = v1.Y * d / v1.Z * ry + 50;
-                x2 = v2.X * d / v2.Z * rx + 80;
-                y2 = v2.Y * d / v2.Z * ry + 50;
-                x3 = v3.X * d / v3.Z * rx + 80;
-                y3 = v3.Y * d / v3.Z * ry + 50;
+                y1 = v1.Y * d / (v1.Z + d) * ry + 50;
+                x2 = v2.X * d / (v2.Z + d) * rx + 80;
+                y2 = v2.Y * d / (v2.Z + d) * ry + 50;
+                x3 = v3.X * d / (v3.Z + d) * rx + 80;
+                y3 = v3.Y * d / (v3.Z + d) * ry + 50;
 
-                if (cbBackCull.CheckState == CheckState.Checked)
+                /*if (cbBackCull.CheckState == CheckState.Checked)
                 {
                     if (f.getVisivel(objeto.Vertices))
                     {
@@ -641,9 +647,9 @@ namespace CG_Elementos_3D
                     Bresenham((int)x2, (int)x3, (int)y2, (int)y3, bmpxz, pbPXZ);
                     Bresenham((int)x3, (int)x1, (int)y3, (int)y1, bmpxz, pbPXZ);
                 }
-                Console.WriteLine("NA");
+                Console.WriteLine("NA");*/
             }
-            pbPXZ.Refresh();*/
+            //pbPXZ.Refresh();
         }
 
         private bool isOnPictureBox(int x, int y, PictureBox pb)
@@ -741,5 +747,206 @@ namespace CG_Elementos_3D
             }
 
         }
+
+        //private void scanLine(Face f, List<Vertice> vertices)
+        //{
+        //    ET[] et;
+        //    ET aet = null;
+        //    ET aux;
+
+        //    et = geraET(f, vertices);
+
+        //    int i = 0;
+
+        //    if (et != null)
+        //    {
+        //        for (; i < et.Length && et[i] != null; i++) ;
+
+        //        aet = et[i];
+        //    }
+
+        //    while (aet != null)
+        //    {
+        //        //aet = removeYMax(aet, i);
+
+        //        if (aet != null)
+        //        {
+        //            //aet = ordenaAET(aet);
+
+        //            //printScanLine(aet, i);
+
+        //            //aet = atualizaXMin(aet, i);
+        //            i++;
+
+        //            /*if(i < et.Length)
+        //                concatena(aet, et[i]);*/
+        //        }
+        //    }
+        //}
+
+        //private ET[] geraET(Face f, List<Vertice> vertices)
+        //{
+        //    Vertice a, b, c;
+        //    ET[] et = null;
+        //    ET nova;
+
+        //    double xmin, ymax, incx, ymin;
+
+        //    a = vertices.ElementAt(f.getPosVertice(0) - 1);
+        //    b = vertices.ElementAt(f.getPosVertice(1) - 1);
+        //    c = vertices.ElementAt(f.getPosVertice(2) - 1);
+
+        //    a.X = a.X + dx; a.Y = a.Y + dy;
+        //    b.X = b.X + dx; b.Y = b.Y + dy;
+        //    c.X = c.X + dx; c.Y = c.Y + dy;
+
+
+        //    int tam = getMaiorY(a.Y, b.Y, c.Y);
+
+        //    if (tam > pictureBox1.Height)
+        //        tam = pictureBox1.he
+
+        //    if (tam > 0)
+        //    {
+        //        et = new ET[tam];
+
+        //        if (a.Y <= b.Y)
+        //        {
+        //            ymin = a.Y;
+        //            ymax = b.Y;
+        //            xmin = a.X;
+
+        //            if (ymax - ymin == 0)
+        //                incx = 0;
+        //            else
+        //                incx = (b.X - xmin) / (ymax - ymin);
+        //        }
+        //        else
+        //        {
+        //            ymin = b.Y;
+        //            ymax = a.Y;
+        //            xmin = b.X;
+
+        //            if (ymax - ymin == 0)
+        //                incx = 0;
+        //            else
+        //                incx = (a.X - xmin) / (ymax - ymin);
+        //        }
+
+        //        nova = new ET(xmin, ymax, incx);
+        //        et = insereFila(et, (int)ymin, nova);
+
+        //        if (a.Y <= c.Y)
+        //        {
+        //            ymin = a.Y;
+        //            ymax = c.Y;
+        //            xmin = a.X;
+
+        //            if (ymax - ymin == 0)
+        //                incx = 0;
+        //            else
+        //                incx = (c.X - xmin) / (ymax - ymin);
+        //        }
+        //        else
+        //        {
+        //            ymin = c.Y;
+        //            ymax = a.Y;
+        //            xmin = c.X;
+
+        //            if (ymax - ymin == 0)
+        //                incx = 0;
+        //            else
+        //                incx = (a.X - xmin) / (ymax - ymin);
+        //        }
+
+        //        nova = new ET(xmin, ymax, incx);
+        //        et = insereFila(et, (int)ymin, nova);
+
+        //        if (b.Y <= c.Y)
+        //        {
+        //            ymin = b.Y;
+        //            ymax = c.Y;
+        //            xmin = b.X;
+
+        //            if (ymax - ymin == 0)
+        //                incx = 0;
+        //            else
+        //                incx = (c.X - xmin) / (ymax - ymin);
+        //        }
+        //        else
+        //        {
+        //            ymin = c.Y;
+        //            ymax = b.Y;
+        //            xmin = c.X;
+
+        //            if (ymax - ymin == 0)
+        //                incx = 0;
+        //            else
+        //                incx = (b.X - xmin) / (ymax - ymin);
+        //        }
+
+        //        nova = new ET(xmin, ymax, incx);
+        //        et = insereFila(et, (int)ymin, nova);
+        //    }
+        //    return et;
+        //}
+
+        //private int getMaiorY(double y1, double y2, double y3)
+        //{
+        //    int maior = int.MinValue;
+
+        //    if (y1 > maior)
+        //        maior = (int)y1;
+
+        //    if (y2 > maior)
+        //        maior = (int)y2;
+
+        //    if (y3 > maior)
+        //        maior = (int)y3;
+
+        //    return maior;
+        //}
+
+        //private ET[] insereFila(ET[] et, int pos, ET nova)
+        //{
+        //    ET aux, ant;
+        //    double max;
+
+        //    ant = null;
+
+        //    if (pos > 0)
+        //    {
+        //        if (et[pos] == null)
+        //            et[pos] = nova;
+        //        else
+        //        {
+        //            aux = et[pos];
+
+        //            while (aux != null && nova.Ymax >= aux.Ymax)
+        //            {
+        //                ant = aux;
+        //                aux = aux.Proxima;
+        //            }
+
+        //            if (aux == null)
+        //                ant.Proxima = nova;
+        //            else
+        //            {
+        //                if (ant == null)
+        //                {
+        //                    nova.Proxima = aux;
+        //                    et[pos] = nova;
+        //                }
+        //                else
+        //                {
+        //                    ant.Proxima = nova;
+        //                    nova.Proxima = aux;
+        //                    et[pos] = ant;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return et;
+        //}
     }
 }

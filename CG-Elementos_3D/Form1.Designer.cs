@@ -58,6 +58,9 @@
             this.cbParaObli = new System.Windows.Forms.CheckBox();
             this.cbParaOrt = new System.Windows.Forms.CheckBox();
             this.btLuz = new System.Windows.Forms.Button();
+            this.gpbModoExb = new System.Windows.Forms.GroupBox();
+            this.cbWireFrame = new System.Windows.Forms.CheckBox();
+            this.cbFlat = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPXY)).BeginInit();
@@ -66,6 +69,7 @@
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.gbProjecoes.SuspendLayout();
+            this.gpbModoExb.SuspendLayout();
             this.SuspendLayout();
             // 
             // btAbrir
@@ -257,6 +261,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.gpbModoExb);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.groupBox);
             this.panel1.Location = new System.Drawing.Point(13, 58);
@@ -370,6 +375,38 @@
             this.btLuz.UseVisualStyleBackColor = false;
             this.btLuz.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btLuz_MouseMove);
             // 
+            // gpbModoExb
+            // 
+            this.gpbModoExb.Controls.Add(this.cbFlat);
+            this.gpbModoExb.Controls.Add(this.cbWireFrame);
+            this.gpbModoExb.ForeColor = System.Drawing.Color.White;
+            this.gpbModoExb.Location = new System.Drawing.Point(4, 174);
+            this.gpbModoExb.Name = "gpbModoExb";
+            this.gpbModoExb.Size = new System.Drawing.Size(282, 231);
+            this.gpbModoExb.TabIndex = 10;
+            this.gpbModoExb.TabStop = false;
+            this.gpbModoExb.Text = "Modo Exibição";
+            // 
+            // cbWireFrame
+            // 
+            this.cbWireFrame.AutoSize = true;
+            this.cbWireFrame.Location = new System.Drawing.Point(7, 20);
+            this.cbWireFrame.Name = "cbWireFrame";
+            this.cbWireFrame.Size = new System.Drawing.Size(74, 17);
+            this.cbWireFrame.TabIndex = 0;
+            this.cbWireFrame.Text = "Wireframe";
+            this.cbWireFrame.UseVisualStyleBackColor = true;
+            // 
+            // cbFlat
+            // 
+            this.cbFlat.AutoSize = true;
+            this.cbFlat.Location = new System.Drawing.Point(6, 44);
+            this.cbFlat.Name = "cbFlat";
+            this.cbFlat.Size = new System.Drawing.Size(43, 17);
+            this.cbFlat.TabIndex = 1;
+            this.cbFlat.Text = "Flat";
+            this.cbFlat.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -407,6 +444,8 @@
             this.panel2.PerformLayout();
             this.gbProjecoes.ResumeLayout(false);
             this.gbProjecoes.PerformLayout();
+            this.gpbModoExb.ResumeLayout(false);
+            this.gpbModoExb.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -443,6 +482,9 @@
         private System.Windows.Forms.CheckBox cbParaObli;
         private System.Windows.Forms.CheckBox cbParaOrt;
         private System.Windows.Forms.Button btLuz;
+        private System.Windows.Forms.GroupBox gpbModoExb;
+        private System.Windows.Forms.CheckBox cbFlat;
+        private System.Windows.Forms.CheckBox cbWireFrame;
     }
 }
 

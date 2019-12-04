@@ -98,10 +98,5 @@ namespace CG_Elementos_3D
                 return true;
             return false;
         }
-
-
-
-
-
     }
 }
